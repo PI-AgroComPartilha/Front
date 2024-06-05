@@ -6,7 +6,7 @@ const data = [
   {
     id: "1",
     image:
-      "https://ik.imagekit.io/mnz3yzqzot/view-woman-working-agricultural-sector-celebrate-labour-day-women_23-2151252083.jpg?updatedAt=1717514534423",
+      "https://ik.imagekit.io/pgmcw5jyhq/front-view-smiley-woman-holding-box.jpg?updatedAt=1717618543511",
   },
   {
     id: "2",
@@ -31,7 +31,7 @@ const data = [
 ];
 function Home() {
   return (
-    <div>
+    <div className="">
       <div className="w-full">
         <Swiper
           modules={[EffectFade]}
@@ -56,13 +56,13 @@ function Home() {
 
 
           <div className="">
-            <h1 className="text-slate-900 text-5xl my-10 p-8">Quem somos nós</h1>
+            <h1 className="text-slate-900 text-5xl my-6 p-6">Quem somos nós</h1>
           </div>
 
           <div className="flex">
 
             <div className="space-x-52">
-              <p className="text-lg text-justify p-8">
+              <p className="text-lg text-justify p-6 w-3/5">
                 Somos uma iniciativa dedicada a conectar pequenos agricultores com a
                 população carente, com a meta de erradicar a fome e promover a
                 agricultura sustentável. Nossa plataforma oferece suporte para
@@ -72,10 +72,10 @@ function Home() {
               </p>
             </div>
 
-            <div>
+            <div className="">
               <img
-                className="ml-2 w-max"
-                src="https://ik.imagekit.io/pgmcw5jyhq/AgroCompartilha.png?updatedAt=1717599123996"
+                className="justify-center"
+                src="https://ik.imagekit.io/pgmcw5jyhq/AGROCOMPARTILHA%20(2).png?updatedAt=1717620650653"
                 alt="Logo"
               />
             </div>
@@ -83,7 +83,7 @@ function Home() {
           </div>
 
 
-          <div className="text-center">
+          <div className="text-center p-6">
             <p className="text-lg">
               <h1 className="text-slate-900 text-5xl my-16">Nossa Missão</h1>
               Nossa missão é proporcionar acesso a alimentos frescos a preços
@@ -96,27 +96,71 @@ function Home() {
 
           <div className="text-center">
 
-            <h1 className="text-slate-900 text-5xl my-16 ">Nossos Valores</h1>
+            <h1 className="text-slate-900 text-5xl my-16">Nossos Valores</h1>
 
-            <div className="flex">
+            <div className="flex justify-center space-x-4">
 
-              <div className="w-36 text-center">
-                Sustentabilidade: Promovemos práticas agrícolas que preservam o meio ambiente.
+              <div className="w-44 text-center border-solid border-2 border-b-emerald-500 rounded">
+                <img
+                  className="justify-center p-7"
+                  src="https://ik.imagekit.io/pgmcw5jyhq/pngtree-sustainability-line-icon-png-image_9012715.png?updatedAt=1717622298324"
+                  alt="sustentabilidade"
+                />
+                <p className="font-bold mb-2">
+                  Sustentabilidade
+                </p>
+                <p className="p-1">
+                  Promovemos práticas agrícolas que preservam o meio ambiente.
+                </p>
+
               </div>
-              <div className="w-36 text-center">
-                Justiça Social: Garantimos que alimentos frescos sejam acessíveis a todos, especialmente à população carente.
+
+              <div className="w-44 text-center border-solid border-2 border-b-emerald-500 rounded">
+                <img
+                  className="justify-center p-7"
+                  src="https://ik.imagekit.io/pgmcw5jyhq/5966163.png?updatedAt=1717622284261"
+                  alt="justiça-social"
+                />
+                <p className="font-bold mb-2">
+                  Justiça Social
+                </p>
+                <p className="p-1">
+                  Garantimos que alimentos frescos sejam acessíveis a todos, especialmente à população carente.
+                </p>
               </div>
-              <div className="w-36 text-center">
-                Comunidade: Fortalecemos a relação entre agricultores e consumidores, construindo uma rede de apoio mútuo.
+
+              <div className="w-44 text-center border-solid border-2 border-b-emerald-500 rounded">
+                <img
+                  className="justify-center p-7"
+                  src="https://ik.imagekit.io/pgmcw5jyhq/people_community_filled_icon_201297.png?updatedAt=1717622273103"
+                  alt="comunidade"
+                />
+                <p className="font-bold mb-2">
+                  Comunidade
+                </p>
+                <p className="p-1">
+                  Fortalecemos a relação entre agricultores e consumidores, construindo uma rede de apoio mútuo.
+                </p>
               </div>
-              <div className="w-36 text-center">
-                Transparência: Comprometemo-nos com a doação de parte dos nossos ganhos para organizações que trabalham pela mesma causa.
+
+              <div className="w-44 text-center border-solid border-2 border-b-emerald-500 rounded">
+                <img
+                  className="justify-center p-7"
+                  src="https://ik.imagekit.io/pgmcw5jyhq/1355174.png?updatedAt=1717622260919"
+                  alt="transparencia"
+                />
+                <p className="font-bold mb-2">
+                  Transparência
+                </p>
+                <p className="p-0.5">
+                  Comprometemo-nos com a doação de parte dos nossos ganhos para organizações que trabalham pela mesma causa.
+                </p>
               </div>
 
             </div>
 
-            <div className="">
-              Junte-se a nós e ajude a construir um futuro mais sustentável e justo para todos.
+            <div className="p-10">
+              <h2> Junte-se a nós e ajude a construir um futuro mais sustentável e justo para todos! </h2>
             </div>
 
           </div>
