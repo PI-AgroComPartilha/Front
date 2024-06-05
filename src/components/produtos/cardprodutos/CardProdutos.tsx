@@ -29,7 +29,7 @@ function CardProduto({ produto }: CardProdutosProps) {
         </ul>
       </div>
       <div className="flex justify-center">
-        {usuario.tipo == "vendedor" ? (
+        {usuario ? (
           <>
             <Link
               to={`/editarproduto/${produto.id}`}

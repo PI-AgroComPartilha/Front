@@ -89,7 +89,9 @@ function FormularioProduto() {
     e.preventDefault();
     setIsLoading(true);
 
-    if (id !== undefined) {
+    //setProduto({ ...produto, preco: Number(produto.preco) });
+
+    if (id) {
       try {
         await atualizar(`/produtos`, produto, setProduto, {
           headers: { Authorization: token },

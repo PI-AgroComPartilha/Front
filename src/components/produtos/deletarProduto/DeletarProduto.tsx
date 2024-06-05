@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Produto } from "../../../models/models";
 import { listar, deletar } from "../../../services/services";
 import { RotatingLines } from "react-loader-spinner";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function DeletarProduto() {
   const navigate = useNavigate();
@@ -13,9 +14,14 @@ function DeletarProduto() {
 
   const { id } = useParams<{ id: string }>();
 
+  const { usuario } = useContext(AuthContext);
+  const token = usuario.token;
+
   async function buscarPorId(id: string) {
     try {
-      await listar(`/produtos/${id}`, setProduto, "");
+      await listar(`/produtos/${id}`, setProduto, {
+        headers: { Authorization: token },
+      });
     } catch (error: any) {
       ToastAlerta("Produto não encontrado!", "erro");
     }
@@ -31,7 +37,9 @@ function DeletarProduto() {
     setIsLoading(true);
 
     try {
-      await deletar(`/produtos/${id}`, "");
+      await deletar(`/produtos/${id}`, {
+        headers: { Authorization: token },
+      });
 
       ToastAlerta("Produto apagado com sucesso", "sucesso");
     } catch (error) {
