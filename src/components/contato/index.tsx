@@ -43,7 +43,7 @@ const pessoas: pessoa[] = [
   },
   {
     foto: "https://ik.imagekit.io/5dvf5jkhq/Dhessyca.jpg?updatedAt=1717528489892",
-    nome: "Dhessyca Souza",
+    nome: "Dhessyca Sousa",
     email: "mailto:dhessyca.pessoal@gmail.com",
     linkedIn: "https://www.linkedin.com/in/dhessyca-s",
     github: "https://github.com/Dhessyca01",
