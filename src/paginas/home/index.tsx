@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper/modules";
 import Contato from "../../components/contato";
+import Footer from "../../components/footer";
 
 const data = [
   {
@@ -51,9 +52,7 @@ function Home() {
       </div>
 
       <div className="flex justify-center font-medium">
-        <h1 className="text-slate-900 text-5xl my-16">
-          Quem somos nós
-        </h1>
+        <h1 className="text-slate-900 text-5xl my-16">Quem somos nós</h1>
       </div>
 
       <div className="">
@@ -61,18 +60,13 @@ function Home() {
           <p className="text-lg">
             Nosso projeto tem como objetivo conectar pequenos agricultores à
             população carente, visando juntos alcançarmos a meta de erradicar a
-            fome e promover a agricultura sustentável. 
-            
-            Oferecemos aos agricultores cadastrados o suporte para práticas sustentáveis,
+            fome e promover a agricultura sustentável. Oferecemos aos
+            agricultores cadastrados o suporte para práticas sustentáveis,
             oportunidades de expansão de mercado e redução do desperdício de
             alimentos. Enquanto isso, nossos clientes têm acesso a alimentos
-            frescos a preços justos! 
-            
-            Além disso, comprometemo-nos a doar 30% dos
+            frescos a preços justos! Além disso, comprometemo-nos a doar 30% dos
             valores arrecadados para ONGs parceiras que compartilham da mesma
-            missão. 
-            
-            Junte-se a nós e ajude a construir um futuro mais
+            missão. Junte-se a nós e ajude a construir um futuro mais
             sustentável e justo.
           </p>
           <div>

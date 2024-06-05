@@ -26,7 +26,7 @@ function FormularioProduto() {
       });
     } catch (error: any) {
       alert("Erro ao Buscar Produto");
-      ToastAlerta('Erro ao Buscar Produto', 'erro')
+      //ToastAlerta('Erro ao Buscar Produto', 'erro')
     }
   }
 
