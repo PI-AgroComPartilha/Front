@@ -32,7 +32,7 @@ const data = [
 function Home() {
   return (
     <div>
-      <div className="container mx-auto">
+      <div className="w-full">
         <Swiper
           modules={[EffectFade]}
           effect="fade"
@@ -40,7 +40,7 @@ function Home() {
           pagination={{ clickable: true }}
           navigation
           loop={true}
-          autoplay={{ delay: 5000, disableOnInteraction: true }}
+          autoplay={{ delay: 4000, disableOnInteraction: true }}
         >
           {data.map((item) => (
             <SwiperSlide key={item.id}>

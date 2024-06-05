@@ -6,6 +6,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
+import { ArrowLeft } from "@phosphor-icons/react";
 
 function Cadastro() {
   let navigate = useNavigate();
@@ -36,6 +37,7 @@ function Cadastro() {
     if (usuarioResposta.id !== 0) {
       back();
     }
+
   }, [usuarioResposta]);
 
   function back() {
@@ -76,11 +78,13 @@ function Cadastro() {
   return (
     <div className="bg-[url('https://img.freepik.com/fotos-premium/mao-segurando-soja-com-platation-e-o-ceu-no-horizonte-e-detalhes-em-macro_44762-1027.jpg?w=740')] bg-cover bg-no-repeat h-screen flex justify-center items-center flex-col">
       <Link
-        className="rounded-3xl bg-white bg-opacity-70 hover:bg-lime-300 font-semibold uppercase font-sans text-black w-1/6 py-2 flex justify-center mb-10"
-        to="/pre-cadastro"
+        className="rounded-3xl font-semibold uppercase font-sans text-black w-1/6 py-2 flex justify-center mb-10 "
+        to="/login"
       >
+        <div className="mr-2"><ArrowLeft size={28} /></div>
         Retornar
       </Link>
+
 
       <div
         className="text-white bg-black bg-opacity-70
@@ -94,7 +98,7 @@ function Cadastro() {
             Cadastre-se
           </h2>
 
-          <div className="w-full">
+          <div className="w-full my-1">
             <label htmlFor="nome" className="font-semibold text-white">
               Nome
             </label>
@@ -110,8 +114,8 @@ function Cadastro() {
             />
           </div>
 
-          <div className="w-full">
-            <label htmlFor="usuario">Usuario</label>
+          <div className="w-full my-1">
+            <label htmlFor="usuario">E-mail</label>
             <input
               type="text"
               id="usuario"
@@ -124,7 +128,7 @@ function Cadastro() {
             />
           </div>
 
-          <div className="w-full">
+          <div className="w-full my-1">
             <label htmlFor="senha">Senha</label>
             <input
               type="password"
@@ -138,7 +142,7 @@ function Cadastro() {
             />
           </div>
 
-          <div className="w-full">
+          <div className="w-full my-1">
             <label htmlFor="foto">Foto</label>
             <input
               type="text"
@@ -150,6 +154,22 @@ function Cadastro() {
                 atualizarEstado(e)
               }
             />
+          </div>
+
+          <div className="w-full my-1">
+            <label htmlFor="usuario">Tipo</label>
+            <select className="text-black rounded-3xl outline-0 p-1.5 bg-white w-full cursor-pointer"
+            onChange={e => {setUsuario({
+              ...usuario,
+              tipo: e.target.value,
+            })}
+          }
+            >
+
+            <option selected disabled>Selecionar</option>
+            <option value="consumidor">Consumidor</option>
+            <option value="produtor">Produtor</option>
+            </select>
           </div>
 
           <button
