@@ -1,4 +1,9 @@
-import { Plant } from "@phosphor-icons/react";
+import {
+  Plant,
+  ShoppingCart,
+  ShoppingCartSimple,
+  User,
+} from "@phosphor-icons/react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
@@ -40,11 +45,9 @@ export default function Header() {
             </li>
             <li>
               <Link to="/cadastrarproduto">cadastrarproduto</Link>
-              
             </li>
             <li>
               <Link to="/perfil">Perfil</Link>
-              
             </li>
           </ul>
           <div className="flex items-center gap-2">
@@ -56,12 +59,20 @@ export default function Header() {
                 Login
               </Link>
             ) : (
-              <button
-                className="px-5 py-1 bg-white rounded-full text-black"
-                onClick={handleLogout}
-              >
-                Sair
-              </button>
+              <>
+                <button
+                  className="px-5 py-1 bg-white rounded-full text-black"
+                  onClick={logout}
+                >
+                  Sair
+                </button>
+                <Link to="/perfil">
+                  <User size={32} weight="bold" />
+                </Link>
+                <Link to="/cart">
+                  <ShoppingCartSimple size={32} weight="bold" />
+                </Link>
+              </>
             )}
             {!isAuthenticated ? (
               <Link

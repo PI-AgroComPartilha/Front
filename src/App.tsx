@@ -19,60 +19,65 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import Perfil from "./paginas/perfil/Perfil";
+import Cart from "./components/carrinho/cart";
+import { CartProvider } from "./contexts/CardContext";
 
 function App() {
   return (
     <AuthProvider>
-      <ToastContainer />
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/pre-cadastro" element={<PreCadastro />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/categorias"
-            element={
-              <ProtectedRoute>
-                <ListarCategorias />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/cadastrarCategoria"
-            element={
-              <ProtectedRoute>
-                <FormCategoria />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/editarCategoria/:id"
-            element={
-              <ProtectedRoute>
-                <FormCategoria />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/deletarCategoria/:id"
-            element={
-              <ProtectedRoute>
-                <DeletarCategoria />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path="/contato" element={<Contato />} />
-          <Route path="/produtos" element={<Produtos />} />
-          <Route path="/cadastrarproduto" element={<FormularioProduto />} />
-          <Route path="/editarproduto/:id" element={<FormularioProduto />} />
-          <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
-          <Route path="/perfil" element={<Perfil />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <CartProvider>
+        <ToastContainer />
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/pre-cadastro" element={<PreCadastro />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/categorias"
+              element={
+                <ProtectedRoute>
+                  <ListarCategorias />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cadastrarCategoria"
+              element={
+                <ProtectedRoute>
+                  <FormCategoria />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/editarCategoria/:id"
+              element={
+                <ProtectedRoute>
+                  <FormCategoria />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/deletarCategoria/:id"
+              element={
+                <ProtectedRoute>
+                  <DeletarCategoria />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/produtos" element={<Produtos />} />
+            <Route path="/cadastrarproduto" element={<FormularioProduto />} />
+            <Route path="/editarproduto/:id" element={<FormularioProduto />} />
+            <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   );
 }
