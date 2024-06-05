@@ -158,7 +158,7 @@ function Cadastro() {
 
           <div className="w-full my-1">
             <label htmlFor="usuario">Tipo</label>
-            <select className="text-black rounded-3xl outline-0 p-1.5 bg-white w-full"
+            <select className="text-black rounded-3xl outline-0 p-1.5 bg-white w-full cursor-pointer"
             onChange={e => {setUsuario({
               ...usuario,
               tipo: e.target.value,
