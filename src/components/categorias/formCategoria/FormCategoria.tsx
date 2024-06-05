@@ -76,19 +76,23 @@ function FormCategoria() {
   }
 
   return (
-    <div className="container flex flex-col items-center justify-center mx-auto">
-      <h1 className="text-4xl text-center my-8">
-        {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
+    <div className="bg-[url('https://ik.imagekit.io/vmo8ef1xo/PI%20-AgroComPartilha/imagens%20login%20cadastro/outside-312569288.jpg?updatedAt=1717608899134')] bg-cover bg-no-repeat h-screen flex justify-center items-center flex-col">
+    <div className="justify-center text-black items-center bg-white bg-opacity-40
+       w-1/2 rounded-3xl gap-4">
+      <h1 className="text-3xl text-center my-9 ">
+        {id === undefined ? 'Cadastrar Categoria' : 'Editar Categoria'}
       </h1>
 
-      <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
-        <div className="flex flex-col gap-2 ">
+      <form className="w-1/2 text-center  my-8 flex flex-col gap-8 text-black rounded-1xl outline-0 p-1.5  w-full"
+        onSubmit={gerarNovaCategoria}
+      >
+        <div className="text-2xl text-center justify-center my-3 gap-5 ">
           <label htmlFor="categoria">Categoria</label>
           <input
             type="text"
             placeholder="Categoria"
-            name="tipo"
-            className="border-2 border-slate-700 rounded p-2 utral-800"
+            name='tipo'
+            className="border-1 border-slate-600 rounded p-3 utral-800"
             required
             value={categoria.tipo}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
@@ -96,22 +100,22 @@ function FormCategoria() {
         </div>
         <button
           className="rounded text-slate-100 bg-slate-400 
-          hover:bg-slate-800 w-1/2 py-2 mx-auto flex justify-center"
+          hover:bg-green-700 w-1/2 py-2 mx-auto flex justify-center"
           type="submit"
         >
-          {isLoading ? (
+          {isLoading ?
             <RotatingLines
               strokeColor="white"
               strokeWidth="5"
               animationDuration="0.75"
               width="24"
               visible={true}
-            />
-          ) : (
-            <span>{id === undefined ? "Cadastrar" : "Atualizar"}</span>
-          )}
+            /> :
+            <span>{id === undefined ? 'Cadastrar' : 'Atualizar'}</span>
+          }
         </button>
       </form>
+    </div>
     </div>
   );
 }

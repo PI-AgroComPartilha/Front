@@ -7,7 +7,7 @@ interface CardCategoriasProps {
 
 function CardCategoria({ categoria }: CardCategoriasProps) {
   return (
-    <div className="border flex flex-col rounded-2xl overflow-hidden justify-between">
+    <div className="border flex border-2 flex-col rounded-2xl overflow-hidden justify-between">
       <header className="py-2 px-6  bg-[#587d33] text-white font-bold text-2xl">
         {" "}
         {categoria.tipo}

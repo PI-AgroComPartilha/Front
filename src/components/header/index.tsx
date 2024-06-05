@@ -36,6 +36,9 @@ export default function Header() {
               <Link to="/contato">Contato</Link>
             </li>
             <li>
+              <Link to = "/cadastrarCategoria">Cadastrar Categoria</Link>
+            </li>
+            <li>
               <Link to="/produtos">Listar produtos</Link>
             </li>
             <li>
