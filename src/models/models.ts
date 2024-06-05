@@ -1,0 +1,34 @@
+export interface Usuario {
+  id: number;
+  nome: string;
+  usuario: string;
+  senha: string;
+  tipo: string;
+  foto: string;
+}
+
+export interface UsuarioLogin {
+  id: number;
+  nome: string;
+  usuario: string;
+  senha: string;
+  tipo: string;
+  foto: string;
+  token: string;
+}
+
+export interface Categoria {
+  id: number;
+  tipo: string;
+}
+
+export interface Produto {
+  id: number;
+  nome: string;
+  descricao: string;
+  foto: string;
+  preco: number;
+  quantidade: number;
+  categoria?: Categoria;
+  usuario: Usuario;
+}
