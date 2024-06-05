@@ -76,7 +76,7 @@ export default function Header() {
             )}
             {!isAuthenticated ? (
               <Link
-                to="/pre-cadastro"
+                to="/cadastro"
                 className="px-5 py-1 bg-white rounded-full text-black"
               >
                 Cadastre-se

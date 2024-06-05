@@ -8,7 +8,6 @@ import FormularioProduto from "./components/produtos/formProduto/FormProduto";
 import Login from "./paginas/login/Login";
 import Produtos from "./paginas/produtos";
 import { ProtectedRoute } from "./services/ProtectedRoute";
-import PreCadastro from "./paginas/precadastro/PreCadastro";
 import Cadastro from "./paginas/cadastro/Cadastro";
 import Header from "./components/header";
 import Home from "./paginas/home";
@@ -31,7 +30,6 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/pre-cadastro" element={<PreCadastro />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/login" element={<Login />} />
             <Route
