@@ -63,6 +63,8 @@ function FormularioProduto() {
       ...produto,
       categoria: categoria,
     });
+
+    setProduto({ ...produto, preco: Number(produto.preco) });
   }, [categoria]);
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
@@ -88,8 +90,6 @@ function FormularioProduto() {
   async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-
-    //setProduto({ ...produto, preco: Number(produto.preco) });
 
     if (id) {
       try {
