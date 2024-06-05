@@ -39,6 +39,10 @@ export default function Header() {
               <Link to="/produtos">Listar produtos</Link>
             </li>
             <li>
+              <Link to="/cadastrarproduto">cadastrarproduto</Link>
+              
+            </li>
+            <li>
               <Link to="/perfil">Perfil</Link>
               
             </li>

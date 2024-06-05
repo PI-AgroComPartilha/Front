@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Categoria } from "../../../models/models";
-import CardCategoria from "../cardcategorias/CardCategoria";
+// import CardCategoria from "../cardcategorias/CardCategoria";
 import { DNA } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { listar } from "../../../services/services";
@@ -64,9 +64,9 @@ function ListarCategorias() {
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categorias.map((categoria) => (
+            {/* {categorias.map((categoria) => (
               <CardCategoria key={categoria.id} categoria={categoria} />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
