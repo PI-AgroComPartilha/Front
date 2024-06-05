@@ -43,7 +43,10 @@ function CardProduto({ produto }: CardProdutosProps) {
             >
               <Trash size={20} />
             </Link>
-            <button className="flex gap-2 items-center py-2 w-[80%] mb-2 rounded-full bg-[#386641] justify-center text-white font-medium text-lg">
+            <button
+              className="flex gap-2 items-center py-2 w-[80%] mb-2 rounded-full bg-[#386641] justify-center text-white font-medium text-lg"
+              onClick={() => adicionarProduto(produto)}
+            >
               Adicionar
               <Basket size={20} />
             </button>
