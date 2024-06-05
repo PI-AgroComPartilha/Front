@@ -4,6 +4,7 @@ import { Categoria, Produto } from "../../../models/models";
 import { atualizar, cadastrar, listar } from "../../../services/services";
 import { RotatingLines } from "react-loader-spinner";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormularioProduto() {
   const navigate = useNavigate();
@@ -25,8 +26,7 @@ function FormularioProduto() {
         headers: { Authorization: token },
       });
     } catch (error: any) {
-      alert("Erro ao Buscar Produto");
-      //ToastAlerta('Erro ao Buscar Produto', 'erro')
+      ToastAlerta("Erro ao buscar produto", "erro");
     }
   }
 
@@ -36,7 +36,7 @@ function FormularioProduto() {
         headers: { Authorization: token },
       });
     } catch (error: any) {
-      alert("Erro ao Buscar Categoria");
+      ToastAlerta("Erro ao buscar categoria", "erro");
     }
   }
 
@@ -46,7 +46,7 @@ function FormularioProduto() {
         headers: { Authorization: token },
       });
     } catch (error: any) {
-      alert("Erro ao Buscar Categorias");
+      ToastAlerta("Erro ao buscar categorias", "erro");
     }
   }
 
@@ -95,9 +95,9 @@ function FormularioProduto() {
           headers: { Authorization: token },
         });
 
-        alert("Produto atualizado com sucesso");
+        ToastAlerta("Produto atualizado com sucesso", "sucesso");
       } catch (error: any) {
-        alert("Erro ao atualizar o Produto!");
+        ToastAlerta("Erro ao atualizar o produto!", "erro");
       }
     } else {
       try {
@@ -105,9 +105,9 @@ function FormularioProduto() {
           headers: { Authorization: token },
         });
 
-        alert("Produto cadastrado com sucesso");
+        ToastAlerta("Produto cadastrado com sucesso", "sucesso");
       } catch (error: any) {
-        alert("Erro ao cadastrar o Produto!");
+        ToastAlerta("Erro ao cadastrar o produto!", "sucesso");
       }
     }
 

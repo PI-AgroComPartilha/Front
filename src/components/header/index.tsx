@@ -2,30 +2,29 @@ import { Plant } from "@phosphor-icons/react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 export default function Header() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { isAuthenticated, usuario, handleLogout } = useContext(AuthContext);
 
-  function logout(){
-    handleLogout()
-        alert('o usuario foi desconectado!')
-        navigate('/login')
-    }
+  function logout() {
+    handleLogout();
+    ToastAlerta("O usuário foi desconectado com sucesso!", "info");
+    navigate("/");
+  }
 
   return (
-
-
     <header>
       <div className="flex text- justify-center bg-[#587d33] text-white ">
         <nav className="flex justify-between py-6 mx-auto items-center container px-3">
-          <div className="font-medium text-2xl flex items-center gap-1">
-            <Plant />
-            AGROCOMPARTILHA
-          </div>
-
+          <Link to="/">
+            <div className="font-medium text-2xl flex items-center gap-1">
+              <Plant />
+              AGROCOMPARTILHA
+            </div>
+          </Link>
           <ul className="flex gap-3 items-center text-sm">
             <li>
               <Link to="/"> Home</Link>

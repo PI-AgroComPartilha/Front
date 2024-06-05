@@ -15,11 +15,15 @@ import Home from "./paginas/home";
 import Footer from "./components/footer";
 import { AuthProvider } from "./contexts/AuthContext";
 import Sobre from "./paginas/sobre";
+import { ToastContainer } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
+import Perfil from "./paginas/perfil/Perfil";
 
 function App() {
   return (
     <AuthProvider>
+      <ToastContainer />
       <BrowserRouter>
         <Header />
         <Routes>
@@ -65,6 +69,7 @@ function App() {
           <Route path="/cadastrarproduto" element={<FormularioProduto />} />
           <Route path="/editarproduto/:id" element={<FormularioProduto />} />
           <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
+          <Route path="/perfil" element={<Perfil />} />
         </Routes>
         <Footer />
       </BrowserRouter>

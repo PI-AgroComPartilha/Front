@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Produto } from "../../../models/models";
 import { listar, deletar } from "../../../services/services";
 import { RotatingLines } from "react-loader-spinner";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function DeletarProduto() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function DeletarProduto() {
     try {
       await listar(`/produtos/${id}`, setProduto, "");
     } catch (error: any) {
-      alert("Produto não encontrado!");
+      ToastAlerta("Produto não encontrado!", "erro");
     }
   }
 
@@ -32,9 +33,9 @@ function DeletarProduto() {
     try {
       await deletar(`/produtos/${id}`, "");
 
-      alert("Produto apagado!");
+      ToastAlerta("Produto apagado com sucesso", "sucesso");
     } catch (error) {
-      alert("Erro ao apagar o produto");
+      ToastAlerta("Erro ao deletar o produto.", "erro");
     }
 
     setIsLoading(false);

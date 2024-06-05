@@ -1,43 +1,47 @@
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+
+const progressBarStyle = {
+  backgroundColor: "#386641",
+};
 
 export function ToastAlerta(mensagem: string, tipo: string) {
   switch (tipo) {
-    case 'sucesso':
+    case "sucesso":
       toast.success(mensagem, {
-        position: 'top-right',
+        position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
-        theme: 'colored',
-        progress: undefined,
+        style: { background: "#white", color: "black" },
+        progressStyle: progressBarStyle,
       });
       break;
 
-    case 'erro':
+    case "erro":
       toast.error(mensagem, {
-        position: 'top-right',
+        position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
-        theme: 'colored',
+        style: { background: "#white", color: "black" },
         progress: undefined,
       });
       break;
 
-    case 'info':
+    case "info":
     default:
       toast.info(mensagem, {
-        position: 'top-right',
+        position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
-        theme: 'colored',
+        style: { background: "#white", color: "black" },
         progress: undefined,
       });
       break;

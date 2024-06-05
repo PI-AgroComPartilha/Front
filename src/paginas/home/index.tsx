@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade } from "swiper/modules";
 import Contato from "../../components/contato";
-import Footer from "../../components/footer";
 
 const data = [
   {
@@ -33,7 +32,7 @@ const data = [
 function Home() {
   return (
     <div>
-      <div className="container">
+      <div className="container mx-auto">
         <Swiper
           modules={[EffectFade]}
           effect="fade"
@@ -58,16 +57,31 @@ function Home() {
       <div className="">
         <section className="flex justify-between my-16 pe-12 px-8  ">
           <p className="text-lg">
-            Nosso projeto tem como objetivo conectar pequenos agricultores à
-            população carente, visando juntos alcançarmos a meta de erradicar a
-            fome e promover a agricultura sustentável. Oferecemos aos
-            agricultores cadastrados o suporte para práticas sustentáveis,
-            oportunidades de expansão de mercado e redução do desperdício de
-            alimentos. Enquanto isso, nossos clientes têm acesso a alimentos
-            frescos a preços justos! Além disso, comprometemo-nos a doar 30% dos
-            valores arrecadados para ONGs parceiras que compartilham da mesma
-            missão. Junte-se a nós e ajude a construir um futuro mais
-            sustentável e justo.
+            Somos uma iniciativa dedicada a conectar pequenos agricultores com a
+            população carente, com a meta de erradicar a fome e promover a
+            agricultura sustentável. Nossa plataforma oferece suporte para
+            práticas agrícolas sustentáveis, oportunidades de mercado, e redução
+            do desperdício de alimentos, beneficiando tanto agricultores quanto
+            consumidores.
+          </p>
+          <h1 className="text-slate-900 text-5xl my-16">Nossa Missão</h1>
+          <p className="text-lg">
+            Nossa missão é proporcionar acesso a alimentos frescos a preços
+            justos, ao mesmo tempo em que apoiamos os agricultores locais.
+            Estamos comprometidos em criar um impacto positivo na sociedade,
+            garantindo que 30% dos valores arrecadados sejam doados para ONGs
+            parceiras que compartilham nosso objetivo de erradicar a fome.
+            <h1 className="text-slate-900 text-5xl my-16">Nossos Valores</h1>
+          </p>
+          <p className="text-lg">
+            Sustentabilidade: Promovemos práticas agrícolas que preservam o meio
+            ambiente. Justiça Social: Garantimos que alimentos frescos sejam
+            acessíveis a todos, especialmente à população carente. Comunidade:
+            Fortalecemos a relação entre agricultores e consumidores,
+            construindo uma rede de apoio mútuo. Transparência: Comprometemo-nos
+            com a doação de parte dos nossos ganhos para organizações que
+            trabalham pela mesma causa. Junte-se a nós e ajude a construir um
+            futuro mais sustentável e justo para todos.
           </p>
           <div>
             <img
