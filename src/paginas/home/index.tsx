@@ -6,7 +6,7 @@ const data = [
   {
     id: "1",
     image:
-      "https://ik.imagekit.io/mnz3yzqzot/view-woman-working-agricultural-sector-celebrate-labour-day-women_23-2151252083.jpg?updatedAt=1717514534423",
+      "https://ik.imagekit.io/pgmcw5jyhq/front-view-smiley-woman-holding-box.jpg?updatedAt=1717618543511",
   },
   {
     id: "2",
@@ -31,7 +31,7 @@ const data = [
 ];
 function Home() {
   return (
-    <div>
+    <div className="">
       <div className="w-full">
         <Swiper
           modules={[EffectFade]}
