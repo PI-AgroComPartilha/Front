@@ -22,7 +22,7 @@ export default function Produtos() {
 
   return (
     <>
-      <div className="container px-3 my-10 min-h-[80svh] mx-auto  flex flex-wrap justify-evenly gap-4">
+      <div className="container px-3 pt-20  min-h-[80svh] mx-auto  flex flex-wrap justify-evenly gap-4">
         {produtos.length === 0 ? (
           <DNA
             visible={true}
