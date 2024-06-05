@@ -22,15 +22,15 @@ export default function Header() {
 
   return (
     <header>
-      <div className="flex text- justify-center bg-[#587d33] text-white ">
-        <nav className="flex justify-between py-6 mx-auto items-center container px-3">
+      <div className="flex text-justify-center bg-[#587d33] text-white ">
+        <nav className="flex justify-between py-6 mx-auto items-center container px-1">
           <Link to="/">
             <div className="font-medium text-2xl flex items-center gap-1">
               <Plant />
               AGROCOMPARTILHA
             </div>
           </Link>
-          <ul className="flex gap-3 items-center text-sm">
+          <ul className="flex gap-7 items-center text-sm">
             <li>
               <Link to="/"> Home</Link>
             </li>
@@ -46,6 +46,7 @@ export default function Header() {
             <li>
               <Link to="/cadastrarproduto">cadastrarproduto</Link>
             </li>
+            <li><Link to="/cadastrarCategoria">Cadastrar Categoria</Link></li>
             <li>
               <Link to="/perfil">Perfil</Link>
             </li>
@@ -102,5 +103,5 @@ export default function Header() {
         </Link>
       </div>
     </header>
-  );
-}
+      );
+    }
