@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://backend-m4yr.onrender.com/",
+  baseURL: import.meta.env.VITE_API_URL
 });
 
 /* TODO: Quando cadastra um usuario invalido dá error mas não retorna */
