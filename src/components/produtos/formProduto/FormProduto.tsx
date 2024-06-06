@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Categoria, Produto } from "../../../models/models";
+import { Categoria, CriarProduto } from "../../../models/models";
 import { atualizar, cadastrar, listar } from "../../../services/services";
 import { RotatingLines } from "react-loader-spinner";
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -13,7 +13,7 @@ function FormularioProduto() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
 
   const [categoria, setCategoria] = useState<Categoria>({ id: 0, tipo: "" });
-  const [produto, setProduto] = useState<Produto>({} as Produto);
+  const [produto, setProduto] = useState<CriarProduto>({} as CriarProduto);
 
   const { usuario } = useContext(AuthContext);
   const token = usuario.token;
@@ -61,7 +61,7 @@ function FormularioProduto() {
   useEffect(() => {
     setProduto({
       ...produto,
-      categoria: categoria,
+      categorias: categoria,
     });
 
     setProduto({ ...produto, preco: Number(produto.preco) });
@@ -79,7 +79,7 @@ function FormularioProduto() {
     setProduto({
       ...produto,
       [e.target.name]: value,
-      categoria: categoria,
+      categorias: categoria,
     });
   }
 
@@ -90,6 +90,11 @@ function FormularioProduto() {
   async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
+
+    setProduto({
+      ...produto,
+      usuarios: usuario.id,
+    });
 
     if (id) {
       try {
@@ -195,7 +200,7 @@ function FormularioProduto() {
         <div className="flex flex-col gap-2">
           <p>Categoria do Produto</p>
           <select
-            name="categoria"
+            name="categorias"
             id="categoria"
             className="border p-2 border-slate-800 rounded"
             onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}

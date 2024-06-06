@@ -33,15 +33,19 @@ function Login() {
 
   return (
     <div className="bg-[url('https://img.freepik.com/fotos-gratis/agricultor-agronomo-senior-trabalhador-no-campo-de-soja-verificando-as-colheitas-antes-da-colheita_342744-1260.jpg?t=st=1717550552~exp=1717554152~hmac=210e409d4b522f15538b3b1106fbffc95225aaa5e57b3f5ab0dc3c4c8c954859&w=740')] bg-cover bg-no-repeat h-screen flex justify-center items-center">
-      <div className="text-white bg-black bg-opacity-70
-       w-1/4 h-1/2 rounded-2xl">
+      <div
+        className="text-white bg-black bg-opacity-70
+       w-1/4 h-1/2 rounded-2xl"
+      >
         <form
           className="flex justify-center items-center flex-col p-5"
           onSubmit={login}
         >
           <h2 className="text-4xl uppercase font-bold font-sans">Login</h2>
           <div className="w-full my-3">
-            <label htmlFor="usuario" className="font-semibold text-white">E-mail</label>
+            <label htmlFor="usuario" className="font-semibold text-white">
+              E-mail
+            </label>
             <input
               type="text"
               id="usuario"
@@ -54,7 +58,9 @@ function Login() {
             />
           </div>
           <div className="w-full">
-            <label htmlFor="senha" className="font-semibold text-white">Senha</label>
+            <label htmlFor="senha" className="font-semibold text-white">
+              Senha
+            </label>
             <input
               type="password"
               id="senha"
@@ -84,12 +90,15 @@ function Login() {
           </button>
 
           <div className="my-3 font-semibold">
-          <p>
-           Não tem uma conta?{" "}
-            <Link to="/cadastro" className="text-lime-400 hover:text-lime-300">
-              Cadastre-se
-            </Link>
-          </p>
+            <p>
+              Não tem uma conta?{" "}
+              <Link
+                to="/cadastro"
+                className="text-lime-400 hover:text-lime-300"
+              >
+                Cadastre-se
+              </Link>
+            </p>
           </div>
         </form>
         <div className="fundoLogin hidden lg:block"></div>

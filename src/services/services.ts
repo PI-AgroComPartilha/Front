@@ -22,8 +22,17 @@ export const cadastrarUsuario = async (
 };
 
 export const login = async (url: string, dados: Object, setDados: Function) => {
-  const resposta = await api.post(url, dados);
-  setDados(resposta.data);
+  try {
+    const resposta = await api.post(url, dados);
+
+    if (resposta.status !== 200) throw new Error(JSON.stringify(resposta));
+
+    console.log(resposta.data);
+    setDados(resposta.data);
+  } catch (e) {
+    console.log(e);
+    throw new Error(JSON.stringify(e));
+  }
 };
 
 export const listar = async (

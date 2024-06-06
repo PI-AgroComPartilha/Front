@@ -5,6 +5,7 @@ export interface Usuario {
   senha: string;
   tipo: string;
   foto: string;
+  produtos?: Produto[];
 }
 
 export interface UsuarioLogin {
@@ -29,6 +30,17 @@ export interface Produto {
   foto: string;
   preco: number;
   quantidade: number;
-  categoria?: Categoria;
-  usuario: Usuario;
+  categorias?: Categoria;
+  usuarios: Usuario;
+}
+
+export interface CriarProduto {
+  id: number;
+  nome: string;
+  descricao: string;
+  foto: string;
+  preco: number;
+  quantidade: number;
+  categorias?: Categoria;
+  usuarios: number;
 }
