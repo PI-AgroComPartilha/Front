@@ -4,11 +4,11 @@ import ListarProdutos from "../../components/produtos/listarProdutos/listarProdu
 
 function FavoritosPage() {
   const { favorites } = useFavorite();
-  /*  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(false);
-  }, []); */
+    setIsLoading(false);
+  }, []);
 
   console.log(favorites);
 
@@ -16,7 +16,8 @@ function FavoritosPage() {
     <ListarProdutos
       produtos={favorites}
       titulo="Favoritos 💖💖"
-      naoEncontrado="Nenhum favorito encontrado"
+      naoEncontrado="Você não gosta de nada ?? vai lá favorita algo e ajudar o pessoal (Você nem vai pagar)"
+      isLoading={isLoading}
     />
   );
 }

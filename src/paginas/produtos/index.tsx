@@ -8,6 +8,7 @@ import ListarProdutos from "../../components/produtos/listarProdutos/listarProdu
 
 function ProdutosPage() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -35,13 +36,21 @@ function ProdutosPage() {
         handleLogout();
       }
     }
+
+    setIsLoading(false);
   }
 
   useEffect(() => {
     buscarProdutos();
   }, [token]);
 
-  return <ListarProdutos produtos={produtos} titulo="Nossos Produtos" />;
+  return (
+    <ListarProdutos
+      produtos={produtos}
+      titulo="Nossos Produtos"
+      isLoading={isLoading}
+    />
+  );
 }
 
 export default ProdutosPage;

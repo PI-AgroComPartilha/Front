@@ -8,7 +8,7 @@ import {
 } from "@phosphor-icons/react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 
 type SecoesType = {
@@ -43,6 +43,9 @@ const secoes: SecoesType[] = [
 export default function Header() {
   const navigate = useNavigate();
 
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuId = document.getElementById("user-menu");
+
   const { isAuthenticated, usuario, handleLogout } = useContext(AuthContext);
 
   const [userMenu, setUserMenu] = useState(false);
@@ -55,8 +58,22 @@ export default function Header() {
 
   console.log(userMenu);
 
+  function toggleMenu() {
+    setUserMenu(!userMenu);
+  }
+
+  /* TODO: implementar o  */
+  useEffect(() => {
+    menuId?.addEventListener("blur", toggleMenu);
+    // document.body.addEventListener("mousedown", toggleMenu);
+    return () => {
+      menuId?.addEventListener("blur", toggleMenu);
+      // document.body.removeEventListener("mousedown", toggleMenu);
+    };
+  }, [userMenu]);
+
   return (
-    <header>
+    <header className="select-none">
       <div className="flex text- justify-center bg-[#587d33] text-white ">
         <nav className="flex justify-between py-6 mx-auto items-center container px-3">
           {/* NOSSO LOGO */}
@@ -99,8 +116,10 @@ export default function Header() {
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
+                      id="user-menu"
                       tabIndex={-1}
                       onBlur={() => setUserMenu(false)}
+                      ref={menuRef}
                     >
                       <div className="block px-4 py-2 text-sm text-gray-700">
                         <Link

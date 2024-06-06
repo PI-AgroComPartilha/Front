@@ -12,6 +12,7 @@ type ListarProdutosProps = {
   titulo?: string;
   naoEncontrado?: string;
   temOpcaoDeCriarNovoProduto?: boolean;
+  isLoading: boolean;
 };
 
 function ListarProdutos({
@@ -19,6 +20,7 @@ function ListarProdutos({
   titulo,
   temOpcaoDeCriarNovoProduto = false,
   naoEncontrado = "Nenhum produto encontrado...",
+  isLoading,
 }: ListarProdutosProps) {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [filtroProduto, setFiltroProduto] = useState<string>("");
@@ -74,7 +76,7 @@ function ListarProdutos({
   const cadastrarProduto = (
     <Link to="/cadastrarProduto">
       <button
-        className={`p-2 border-3 rounded-lg text-nowrap border-black dark:border-white font-semibold bg-[#587d33] text-white hover:bg-[#4d702a] `}
+        className={`p-2 border-3 rounded-lg text-nowrap w-full  border-black dark:border-white font-semibold bg-[#587d33] text-white hover:bg-[#4d702a] `}
         style={{ fontSize: "15px" }}
       >
         Cadastrar Novo Produto
@@ -86,7 +88,7 @@ function ListarProdutos({
   console.log(usuario);
   return (
     <>
-      {produtos.length === 0 && (
+      {isLoading && (
         <>
           <div className="flex flex-col items-center justify-center my-4 gap-4 min-h-screen">
             <Vortex
@@ -115,7 +117,7 @@ function ListarProdutos({
           {titulo ? titulo : "Produtos"}
         </h2>
         <div className="flex gap-14 flex-col mx-auto">
-          {produtos.length !== 0 && (
+          {produtos.length !== 0 ? (
             <>
               <div
                 className={
@@ -151,6 +153,10 @@ function ListarProdutos({
                   cadastrarProduto}
               </div>
             </>
+          ) : (
+            (usuario.tipo === "vendedor" || usuario.tipo === "administrador") &&
+            temOpcaoDeCriarNovoProduto &&
+            cadastrarProduto
           )}
           <div className="mx-auto flex flex-wrap gap-20 justify-center items-center ">
             {produtosFiltrados.length === 0 && (

@@ -8,6 +8,7 @@ import ListarProdutos from "../../components/produtos/listarProdutos/listarProdu
 
 function MinhaLojaPage() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -34,6 +35,8 @@ function MinhaLojaPage() {
         handleLogout();
       }
     }
+
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -49,6 +52,7 @@ function MinhaLojaPage() {
       produtos={(userProduto as any) || []}
       titulo="Meu Produtos"
       temOpcaoDeCriarNovoProduto={true}
+      isLoading={isLoading}
     />
   );
 }
