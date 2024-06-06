@@ -11,10 +11,18 @@ function Perfil() {
 
   useEffect(() => {
     if (usuario.token === "") {
-      ToastAlerta("Você precisa estar logado", "info");
-      navigate("/");
+     
     }
   }, [usuario.token]);
+
+  function validarUsuario() {    
+  if (usuario.token === "") {
+    ToastAlerta("Você precisa estar logado", "info");
+    navigate("/");
+  }
+ [usuario.token];
+  }
+
 
   return (
     <div className="container mx-auto m-4 rounded-2xl overflow-hidden min-h-[calc(100vh-160px)]">

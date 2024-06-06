@@ -4,6 +4,7 @@ export function ToastAlerta(mensagem: string, tipo: string) {
   switch (tipo) {
     case "sucesso":
       toast.error(mensagem, {
+        icon: "🚀",
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -15,10 +16,11 @@ export function ToastAlerta(mensagem: string, tipo: string) {
         progress: undefined,
       });
       break;
-
+  
     case "erro":
-      toast.error(mensagem, {
-        position: "top-right",
+      toast.error(mensagem,  {
+        icon: "ℹ️",
+       position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -33,7 +35,8 @@ export function ToastAlerta(mensagem: string, tipo: string) {
     case "info":
     default:
       toast.error(mensagem, {
-         position: "top-right",
+        icon: "❗",
+      position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
