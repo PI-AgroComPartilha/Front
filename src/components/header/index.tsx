@@ -56,8 +56,6 @@ export default function Header() {
     navigate("/login");
   }
 
-  console.log(userMenu);
-
   function toggleMenu() {
     setUserMenu(!userMenu);
   }
@@ -99,7 +97,7 @@ export default function Header() {
             {isAuthenticated ? (
               /* USUARIO LOGADO */
               <>
-                <Link to="/cart">
+                <Link to="/carrinho">
                   <Basket size={36} weight="bold" />
                 </Link>
                 <div className="relative">
@@ -146,7 +144,6 @@ export default function Header() {
                             <p className=" text-lg text-gray-800">Favoritos</p>
                           </div>
                         </Link>
-                        {/* TODO: USuario só deve poder cadastrar produtos ser for um vendedor */}
                         {usuario?.tipo === "vendedor" && (
                           <Link
                             to="/minhaLoja"
@@ -159,6 +156,23 @@ export default function Header() {
                               />
                               <p className=" text-lg text-gray-800 text-nowrap">
                                 Minha Loja
+                              </p>
+                            </div>
+                          </Link>
+                        )}
+                        {/* Troca isso aqui depois para admin */}
+                        {usuario?.tipo === "vendedor" && (
+                          <Link
+                            to="/categorias"
+                            className="group block px-4 py-2 text-sm"
+                          >
+                            <div className="flex items-center gap-2">
+                              <Plant
+                                size={32}
+                                className="group-hover:fill-[#587d33]"
+                              />
+                              <p className=" text-lg text-gray-800 text-nowrap">
+                                Categorias
                               </p>
                             </div>
                           </Link>

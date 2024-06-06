@@ -1,19 +1,17 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { cadastrarUsuario } from "../../services/services";
 import { Usuario } from "../../models/models";
 import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 import { ArrowLeft } from "@phosphor-icons/react";
 
 function Cadastro() {
   let navigate = useNavigate();
 
-  const { isLoading } = useContext(AuthContext);
-
   const [confirmaSenha, setConfirmaSenha] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [usuario, setUsuario] = useState<Usuario>({
     id: 0,
@@ -37,7 +35,6 @@ function Cadastro() {
     if (usuarioResposta.id !== 0) {
       back();
     }
-
   }, [usuarioResposta]);
 
   function back() {
@@ -53,6 +50,9 @@ function Cadastro() {
 
   async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    setIsLoading(true);
+    console.log(usuario);
 
     if (confirmaSenha === usuario.senha && usuario.senha.length >= 8) {
       try {
@@ -73,18 +73,20 @@ function Cadastro() {
       setUsuario({ ...usuario, senha: "" });
       setConfirmaSenha("");
     }
+    setIsLoading(false);
   }
 
   return (
-    <div className="bg-[url('https://img.freepik.com/fotos-premium/mao-segurando-soja-com-platation-e-o-ceu-no-horizonte-e-detalhes-em-macro_44762-1027.jpg?w=740')] bg-cover bg-no-repeat h-screen flex justify-center items-center flex-col">
+    <div className=" bg-[url('https://img.freepik.com/fotos-premium/mao-segurando-soja-com-platation-e-o-ceu-no-horizonte-e-detalhes-em-macro_44762-1027.jpg?w=740')] bg-cover bg-no-repeat h-screen flex justify-center items-center flex-col">
       <Link
-        className="rounded-3xl font-semibold uppercase font-sans text-black w-1/6 py-2 flex justify-center mb-10 "
+        className="ease-in  rounded-full hover:bg-lime-300 duration-300 font-semibold uppercase font-sans text-black p-2 flex justify-center mb-4"
         to="/login"
       >
-        <div className="mr-2"><ArrowLeft size={28} /></div>
+        <div className="mr-2">
+          <ArrowLeft size={28} />
+        </div>
         Retornar
       </Link>
-
 
       <div
         className="text-white bg-black bg-opacity-70
@@ -103,6 +105,7 @@ function Cadastro() {
               Nome
             </label>
             <input
+              required
               type="text"
               id="nome"
               name="nome"
@@ -117,6 +120,7 @@ function Cadastro() {
           <div className="w-full my-1">
             <label htmlFor="usuario">E-mail</label>
             <input
+              required
               type="text"
               id="usuario"
               name="usuario"
@@ -134,6 +138,7 @@ function Cadastro() {
               type="password"
               id="senha"
               name="senha"
+              required
               className="text-black rounded-3xl outline-0 p-1.5 bg-white w-full"
               value={usuario.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -141,10 +146,24 @@ function Cadastro() {
               }
             />
           </div>
+          <div className="w-full my-1">
+            <label htmlFor="senha">Senha</label>
+            <input
+              required
+              type="password"
+              id="senha"
+              className="text-black rounded-3xl outline-0 p-1.5 bg-white w-full"
+              value={confirmaSenha}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setConfirmaSenha(e.target.value)
+              }
+            />
+          </div>
 
           <div className="w-full my-1">
             <label htmlFor="foto">Foto</label>
             <input
+              required
               type="text"
               id="foto"
               name="foto"
@@ -158,17 +177,22 @@ function Cadastro() {
 
           <div className="w-full my-1">
             <label htmlFor="usuario">Tipo</label>
-            <select className="text-black rounded-3xl outline-0 p-1.5 bg-white w-full cursor-pointer"
-            onChange={e => {setUsuario({
-              ...usuario,
-              tipo: e.target.value,
-            })}
-          }
+            <select
+              className="text-black rounded-3xl outline-0 p-1.5 bg-white w-full cursor-pointer"
+              onChange={(e) => {
+                setUsuario({
+                  ...usuario,
+                  tipo: e.target.value,
+                });
+              }}
+              required
+              aria-required
             >
-
-            <option selected disabled>Selecionar</option>
-            <option value="consumidor">Consumidor</option>
-            <option value="produtor">Produtor</option>
+              <option selected disabled>
+                Selecionar
+              </option>
+              <option value="cliente">Consumidor</option>
+              <option value="vendedor">Produtor</option>
             </select>
           </div>
 

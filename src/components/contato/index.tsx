@@ -77,7 +77,7 @@ const Contato: FC<ContatoProps> = () => {
       <h1 className="flex text- justify-center ">
         <div className="flex justify-between py-6 mx-auto items-center container px-4">
           <div className="font-medium text-3xl flex items-center gap-1">
-            Quem desenvolveu o projeto:
+            Conheça o time de desenvolvedores:
           </div>
         </div>
       </h1>

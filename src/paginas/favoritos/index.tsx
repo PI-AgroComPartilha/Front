@@ -10,8 +10,6 @@ function FavoritosPage() {
     setIsLoading(false);
   }, []);
 
-  console.log(favorites);
-
   return (
     <ListarProdutos
       produtos={favorites}

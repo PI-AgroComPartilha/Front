@@ -53,16 +53,34 @@ function CardProduto({ produto, editavel = false }: CardProdutosProps) {
               <>
                 <Link
                   to={`/editarproduto/${produto.id}`}
-                  className="absolute top-3 right-3"
+                  className="absolute top-3 right-9"
                 >
                   <Pencil size={20} />
                 </Link>
                 <Link
                   to={`/deletarproduto/${produto.id}`}
-                  className="absolute top-3 left-3"
+                  className="absolute top-3 right-3"
                 >
                   <Trash size={20} />
                 </Link>
+                {favorito ? (
+                  <Heart
+                    size={20}
+                    weight="fill"
+                    className={
+                      "absolute top-3 left-3  cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-red-500 duration-300"
+                    }
+                    onClick={toggleFavorito}
+                  />
+                ) : (
+                  <Heart
+                    size={20}
+                    className={
+                      "absolute top-3 left-3 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-black  duration-300"
+                    }
+                    onClick={toggleFavorito}
+                  />
+                )}
               </>
             )}
             <button
@@ -84,24 +102,6 @@ function CardProduto({ produto, editavel = false }: CardProdutosProps) {
             </button>
             <Basket size={20} />
           </>
-        )}
-        {favorito ? (
-          <Heart
-            size={40}
-            weight="fill"
-            className={
-              "absolute top-1  right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-red-500 duration-300"
-            }
-            onClick={toggleFavorito}
-          />
-        ) : (
-          <Heart
-            size={40}
-            className={
-              "absolute top-1 right-1 p-2 cursor-pointer hover:text-red-600 dark:hover:text-red-400 text-black dark:text-white duration-300"
-            }
-            onClick={toggleFavorito}
-          />
         )}
       </div>
     </div>

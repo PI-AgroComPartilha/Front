@@ -6,7 +6,7 @@ interface CardProdutosProps {
   item: Produto;
 }
 
-function CardCart({ item }: CardProdutosProps) {
+function CardCarrinho({ item }: CardProdutosProps) {
   const { removerProduto } = useContext(CartContext);
 
   return (
@@ -42,4 +42,4 @@ function CardCart({ item }: CardProdutosProps) {
   );
 }
 
-export default CardCart;
+export default CardCarrinho;

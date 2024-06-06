@@ -14,7 +14,7 @@ function FormCategoria() {
 
   const { id } = useParams<{ id: string }>();
 
-  const { usuario, handleLogout } = useContext(AuthContext);
+  const { usuario } = useContext(AuthContext);
   const token = usuario.token;
 
   async function buscarPorId(id: string) {

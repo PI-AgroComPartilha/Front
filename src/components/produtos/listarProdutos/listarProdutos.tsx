@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { Vortex } from "react-loader-spinner";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { Categoria, Produto } from "../../../models/models";
 import { listar } from "../../../services/services";
@@ -25,17 +25,9 @@ function ListarProdutos({
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [filtroProduto, setFiltroProduto] = useState<string>("");
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<string>("");
-  const navigate = useNavigate();
 
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
-
-  useEffect(() => {
-    if (token === "") {
-      ToastAlerta("Você precisa estar logado", "error");
-      navigate("/");
-    }
-  }, [token]);
 
   async function buscarCategorias() {
     try {
@@ -65,7 +57,6 @@ function ListarProdutos({
   };
 
   const produtosFiltrados = produtos.filter((produto) => {
-    console.log(produto);
     return (
       produto.nome.toLowerCase().includes(filtroProduto.toLowerCase()) &&
       (categoriaSelecionada === "" ||
@@ -84,8 +75,6 @@ function ListarProdutos({
     </Link>
   );
 
-  console.log(produtos);
-  console.log(usuario);
   return (
     <>
       {isLoading && (
@@ -112,7 +101,7 @@ function ListarProdutos({
           </div>
         </>
       )}
-      <div className="container justify-center mx-auto  bg-wallpaper bg-repeat bg-center  min-h-screen">
+      <div className="container justify-center mx-auto  bg-wallpaper bg-repeat bg-center  min-h-screen pb-10">
         <h2 className="text-4xl text-center my-4 font-bold uppercase">
           {titulo ? titulo : "Produtos"}
         </h2>

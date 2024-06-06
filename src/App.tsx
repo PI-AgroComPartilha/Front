@@ -18,11 +18,11 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import Perfil from "./paginas/perfil/Perfil";
-import Cart from "./components/carrinho/cart";
 import { CartProvider } from "./contexts/CardContext";
 import MinhaLojaPage from "./paginas/minhaLoja";
 import { FavoriteProvider } from "./contexts/FavoritosContext";
 import FavoritosPage from "./paginas/favoritos";
+import Carrinho from "./components/carrinho/carrinho";
 
 function App() {
   return (
@@ -78,7 +78,7 @@ function App() {
               />
               <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
               <Route path="/perfil" element={<Perfil />} />
-              <Route path="/cart" element={<Cart />} />
+              <Route path="/carrinho" element={<Carrinho />} />
               <Route path="/minhaLoja" element={<MinhaLojaPage />} />
               <Route path="/Favoritos" element={<FavoritosPage />} />
             </Routes>

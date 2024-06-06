@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Produto, Usuario } from "../../models/models";
+import { Produto } from "../../models/models";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 import { listar } from "../../services/services";
 import ListarProdutos from "../../components/produtos/listarProdutos/listarProdutos";

@@ -41,6 +41,6 @@ export interface CriarProduto {
   foto: string;
   preco: number;
   quantidade: number;
-  categorias?: Categoria;
+  categorias: number;
   usuarios: number;
 }

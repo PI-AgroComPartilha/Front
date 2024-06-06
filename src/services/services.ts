@@ -13,6 +13,7 @@ export const cadastrarUsuario = async (
   try {
     const resposta = await api.post(url, dados);
 
+    console.log(resposta);
     if (resposta.status !== 201) throw new Error(JSON.stringify(resposta));
     setDados(resposta.data);
   } catch (e) {
@@ -27,7 +28,6 @@ export const login = async (url: string, dados: Object, setDados: Function) => {
 
     if (resposta.status !== 200) throw new Error(JSON.stringify(resposta));
 
-    console.log(resposta.data);
     setDados(resposta.data);
   } catch (e) {
     console.log(e);
@@ -40,8 +40,13 @@ export const listar = async (
   setDados: Function,
   header: Object
 ) => {
-  const resposta = await api.get(url, header);
-  setDados(resposta.data);
+  try {
+    const resposta = await api.get(url, header);
+    console.log(resposta.data);
+    setDados(resposta.data);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const cadastrar = async (
@@ -52,6 +57,7 @@ export const cadastrar = async (
 ) => {
   try {
     const resposta = await api.post(url, dados, header);
+    console.log(resposta);
     if (resposta.status !== 200) throw new Error(JSON.stringify(resposta));
 
     setDados(resposta.data);
