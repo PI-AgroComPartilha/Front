@@ -73,13 +73,9 @@ const pessoas: pessoa[] = [
 
 const Contato: FC<ContatoProps> = () => {
   return (
-    <section className="w-full  min-h-[85vh] mb-7">
-      <h1 className="flex text- justify-center ">
-        <div className="flex justify-between py-6 mx-auto items-center container px-4">
-          <div className="font-medium text-3xl flex items-center gap-1">
-            Conheça o time de desenvolvedores:
-          </div>
-        </div>
+    <section className="w-full flex flex-col gap-10 min-h-[85vh] my-7 ">
+      <h1 className="flex text-center justify-center  text-5xl font-medium">
+        Conheça o time de desenvolvedores:
       </h1>
 
       <div className="flex w-full justify-center flex-wrap  mx-auto gap-6  ">

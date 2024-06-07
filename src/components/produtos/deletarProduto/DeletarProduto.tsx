@@ -55,26 +55,28 @@ function DeletarProduto() {
   }
 
   return (
-    <div className="container w-1/3 mx-auto">
+    <div className="container w-1/3 mx-auto min-h-[85vh] flex flex-col justify-center">
       <h1 className="text-4xl text-center py-4">Deletar Produto</h1>
       <p className="text-center font-semibold mb-4">
         Você tem certeza de que deseja apagar o produto a seguir?
       </p>
       <div className="border flex flex-col rounded-2xl overflow-hidden justify-between">
-        <header className="py-2 px-6 bg-slate-600 text-white font-bold text-2xl">
+        <header className="w-full text-slate-100 text-2xl font-bold bg-[#587d33] hover:bg-[#456328] flex items-center justify-center py-2">
           Produto
         </header>
-        <p className="p-8 text-3xl bg-white h-full">{produto.nome}</p>
+        <p className="p-8 text-3xl bg-white h-full text-center">
+          {produto.nome}
+        </p>
         <div className="flex">
           <button
-            className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2"
+            className="w-full text-slate-100 bg-[#587d33] hover:bg-[#456328] flex items-center justify-center py-2"
             onClick={retornar}
           >
             Não
           </button>
           <button
-            className="w-full text-slate-100 bg-teal-400 hover:bg-teal-700
-                         flex items-center justify-center"
+            className="w-full text-slate-100 0 hover:bg-red-500
+                         flex items-center justify-center bg-red-600 b"
             onClick={deletarProduto}
           >
             {isLoading ? (
