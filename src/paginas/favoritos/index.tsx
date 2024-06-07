@@ -3,7 +3,7 @@ import { useFavorite } from "../../contexts/FavoritosContext";
 import ListarProdutos from "../../components/produtos/listarProdutos/listarProdutos";
 
 function FavoritosPage() {
-  const { favorites } = useFavorite();
+  const { favorites, removeFavorite } = useFavorite();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

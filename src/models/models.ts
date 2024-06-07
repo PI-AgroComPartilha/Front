@@ -26,21 +26,18 @@ export interface Categoria {
 export interface Produto {
   id: number;
   nome: string;
-  descricao: string;
   foto: string;
   preco: number;
-  quantidade: number;
   categorias?: Categoria;
   usuarios: Usuario;
 }
 
 export interface CriarProduto {
+  [x: string]: any;
   id: number;
   nome: string;
-  descricao: string;
   foto: string;
   preco: number;
-  quantidade: number;
   categorias: number;
   usuarios: number;
 }

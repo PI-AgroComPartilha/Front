@@ -30,7 +30,7 @@ function DeletarCategoria() {
 
   useEffect(() => {
     if (token === "") {
-        }
+    }
   }, [token]);
 
   useEffect(() => {

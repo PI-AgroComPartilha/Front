@@ -6,10 +6,12 @@ import { listar } from "../../../services/services";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
 import CardCategoria from "../cardcategorias/CardCategoria";
+import Loading from "../../loading/loading";
 
 function ListarCategorias() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [filtroCategoria, setFiltroCategoria] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   let navigate = useNavigate();
 
@@ -33,6 +35,7 @@ function ListarCategorias() {
         handleLogout();
       }
     }
+    setIsLoading(false);
   }
 
   const handleFiltrarCategorias = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,31 +50,37 @@ function ListarCategorias() {
     return categoria.tipo.toLowerCase().includes(filtroCategoria.toLowerCase());
   });
 
+  if (isLoading) return <Loading title="Carregando Produtos..." />;
+
   return (
     <div
       className="
                 bg-gray-200 
                 flex flex-col
-                px-5
-                justify-center
-                min-h-[80vh]
+                p-5
+                min-h-[85vh]
+                h-full
+                select-none
                 "
     >
-      <div
-        className={
-          "my-10 bg-[#587d33]  flex w-full bg-opacity-50 backdrop-blur-sm  dark:bg-opacity-30 py-3 px-5 mb-10   flex-col md:flex-row items-center rounded-xl "
-        }
-      >
-        <div className="flex w-full gap-4">
-          <input
-            type="text"
-            placeholder="Pesquisar por produto"
-            value={filtroCategoria}
-            onChange={handleFiltrarCategorias}
-            className="border-slate-800 rounded-xl bg-white w-full hidden md:block mx-auto px-3 py-2 duration-300"
-          />
-          {(usuario.tipo === "vendedor" ||
-            usuario.tipo === "administrador") && (
+      <div>
+        <h2 className="text-4xl text-center mt-4  font-bold uppercase">
+          Categorias 🍎
+        </h2>
+        <div
+          className={
+            "my-10 bg-[#587d33] mx-auto  container flex w-full bg-opacity-50 backdrop-blur-sm  dark:bg-opacity-30 py-3 px-5 mb-10   flex-col md:flex-row items-center rounded-xl "
+          }
+        >
+          <div className="flex w-full gap-4">
+            <input
+              type="text"
+              placeholder="Pesquisar por produto"
+              value={filtroCategoria}
+              onChange={handleFiltrarCategorias}
+              className="border-slate-800 rounded-xl bg-white w-full hidden md:block mx-auto px-3 py-2 duration-300"
+            />
+
             <Link to="/cadastrarCategoria">
               <button
                 className={`p-2 border-3 rounded-lg text-nowrap w-full  border-black dark:border-white font-semibold bg-[#587d33] text-white hover:bg-[#4d702a] `}
@@ -80,7 +89,7 @@ function ListarCategorias() {
                 Cadastrar Nova Categoria
               </button>
             </Link>
-          )}
+          </div>
         </div>
       </div>
       <div className="my-4 container flex flex-col mx-auto">
@@ -91,7 +100,11 @@ function ListarCategorias() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categoriasFiltrada.map((categoria) => (
-            <CardCategoria key={categoria.id} categoria={categoria} />
+            <CardCategoria
+              key={categoria.id}
+              categoria={categoria}
+              research={buscarCategorias}
+            />
           ))}
         </div>
       </div>

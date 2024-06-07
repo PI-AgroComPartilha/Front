@@ -73,7 +73,7 @@ const pessoas: pessoa[] = [
 
 const Contato: FC<ContatoProps> = () => {
   return (
-    <section className="w-full">
+    <section className="w-full  min-h-[85vh] mb-7">
       <h1 className="flex text- justify-center ">
         <div className="flex justify-between py-6 mx-auto items-center container px-4">
           <div className="font-medium text-3xl flex items-center gap-1">
@@ -96,7 +96,7 @@ const CardPessoa = ({ nome, email, linkedIn, github, foto }: pessoa) => {
     <div className="flex flex-col w-full justify-center items-center text-center max-w-[300px] gap-4">
       <img
         src={foto}
-        className="h-40 rounded-full  w-[160px] object-cover object-top border-4  border-green-700"
+        className="h-40 rounded-full  w-[160px] object-cover object-top border-4  border-[#587d33]"
         alt=""
       />
       <p className="font-bold uppercase text-base">{nome}</p>

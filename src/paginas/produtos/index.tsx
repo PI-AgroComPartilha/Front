@@ -36,7 +36,7 @@ function ProdutosPage() {
   return (
     <ListarProdutos
       produtos={produtos}
-      titulo="Nossos Produtos"
+      titulo="Nossos Produtos 🛒"
       isLoading={isLoading}
     />
   );

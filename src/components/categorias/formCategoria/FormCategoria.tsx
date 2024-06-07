@@ -76,7 +76,53 @@ function FormCategoria() {
   }
 
   return (
-    <div className="container flex flex-col items-center justify-center mx-auto">
+    <div className="container flex justify-around mx-auto ">
+      <div className="w-full md:w-1/2 min-h-[80vh] container flex px-4 flex-col items-center justify-center mx-auto gap-4 my-8">
+        <h1 className="text-4xl font-bold">
+          {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
+        </h1>
+        <div className="w-[90%] justify-center flex items-center">
+          <form
+            className="w-4/5 flex flex-col gap-4"
+            onSubmit={gerarNovaCategoria}
+          >
+            <div className="flex flex-col gap-2 ">
+              <label htmlFor="categoria">Nome da Categoria</label>
+              <input
+                type="text"
+                placeholder="Verduras"
+                name="tipo"
+                className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#587d33] duration-1000"
+                required
+                value={categoria.tipo}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  atualizarEstado(e)
+                }
+              />
+            </div>
+
+            <button
+              className="w-full  h-14 bg-[#587d33] items-center justify-center flex  rounded-lg font-bold text-white hover:bg-[#446126] duration-1000"
+              type="submit"
+            >
+              {isLoading ? (
+                <RotatingLines
+                  strokeColor="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="24"
+                  visible={true}
+                />
+              ) : (
+                <span>{id !== undefined ? "Atualizar" : "Cadastrar"}</span>
+              )}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    /*  <div className="container flex flex-col items-center justify-center mx-auto">
       <h1 className="text-4xl text-center my-8">
         {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
       </h1>
@@ -112,7 +158,7 @@ function FormCategoria() {
           )}
         </button>
       </form>
-    </div>
+    </div> */
   );
 }
 

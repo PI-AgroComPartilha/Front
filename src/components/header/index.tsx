@@ -161,7 +161,7 @@ export default function Header() {
                           </Link>
                         )}
                         {/* Troca isso aqui depois para admin */}
-                        {usuario?.tipo === "vendedor" && (
+                        {usuario?.tipo === "admin" && (
                           <Link
                             to="/categorias"
                             className="group block px-4 py-2 text-sm"

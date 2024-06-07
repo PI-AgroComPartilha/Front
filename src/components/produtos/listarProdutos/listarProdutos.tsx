@@ -6,6 +6,8 @@ import { Categoria, Produto } from "../../../models/models";
 import { listar } from "../../../services/services";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
 import CardProduto from "../cardprodutos/CardProdutos";
+import { Plant } from "@phosphor-icons/react";
+import Loading from "../../loading/loading";
 
 type ListarProdutosProps = {
   produtos: Produto[];
@@ -75,95 +77,68 @@ function ListarProdutos({
     </Link>
   );
 
+  if (isLoading) return <Loading title="Carregando Produtos..." />;
+
   return (
-    <>
-      {isLoading && (
-        <>
-          <div className="flex flex-col items-center justify-center my-4 gap-4 min-h-screen">
-            <Vortex
-              height="100"
-              width="100"
-              ariaLabel="vortex-loading"
-              wrapperStyle={{}}
-              wrapperClass="vortex-wrapper"
-              visible={true}
-              colors={[
-                "#be0343",
-                "#be0343",
-                "#be0343",
-                "#be0343",
-                "#be0343",
-                "green",
-              ]}
-            />
-            <p>Parece que nenhum produto foi postado ainda.</p>
-            <p>Aguarde até que um vendedor poste algo.</p>
-          </div>
-        </>
-      )}
-      <div className="container justify-center mx-auto  bg-wallpaper bg-repeat bg-center  min-h-screen pb-10">
-        <h2 className="text-4xl text-center my-4 font-bold uppercase">
+    <div className="mb-6 select-none  p-5 flex flex-col gap-10 min-h-[82vh]">
+      <div className="container flex flex-col items-center justify-center mx-auto gap-4">
+        <h2 className="text-4xl text-center mt-4  font-bold uppercase">
           {titulo ? titulo : "Produtos"}
         </h2>
-        <div className="flex gap-14 flex-col mx-auto">
-          {produtos.length !== 0 ? (
-            <>
-              <div
-                className={
-                  "my-10 bg-[#587d33]  flex w-full bg-opacity-50 backdrop-blur-sm  dark:bg-opacity-30 py-3 px-5 mb-10   flex-col md:flex-row items-center rounded-xl "
-                }
+        {produtos.length !== 0 ? (
+          <div
+            className={
+              " bg-[#587d33] flex w-full  bg-opacity-50 backdrop-blur-sm  dark:bg-opacity-30 py-3 px-4 mb-10   flex-col md:flex-row items-center rounded-xl "
+            }
+          >
+            <div className="flex w-full">
+              <input
+                type="text"
+                placeholder="Pesquisar por produto"
+                value={filtroProduto}
+                onChange={handleFiltrarProdutos}
+                className="border-slate-800 rounded-xl bg-white w-full hidden md:block mx-auto px-3 py-2 duration-300"
+              />
+              <select
+                name="categoria"
+                id="categoria"
+                value={categoriaSelecionada}
+                onChange={handleSelecionarCategoria}
+                className="border-slate-800 rounded bg-transparent mx-4 cursor-pointer"
               >
-                <div className="flex w-full">
-                  <input
-                    type="text"
-                    placeholder="Pesquisar por produto"
-                    value={filtroProduto}
-                    onChange={handleFiltrarProdutos}
-                    className="border-slate-800 rounded-xl bg-white w-full hidden md:block mx-auto px-3 py-2 duration-300"
-                  />
-                  <select
-                    name="categoria"
-                    id="categoria"
-                    value={categoriaSelecionada}
-                    onChange={handleSelecionarCategoria}
-                    className="border-slate-800 rounded bg-transparent mx-4 cursor-pointer"
-                  >
-                    <option value="">Todas as categorias</option>
-                    {categorias.map((categoria) => (
-                      <option key={categoria.id} value={categoria.id}>
-                        {categoria.tipo}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                {(usuario.tipo === "vendedor" ||
-                  usuario.tipo === "administrador") &&
-                  temOpcaoDeCriarNovoProduto &&
-                  cadastrarProduto}
-              </div>
-            </>
-          ) : (
-            (usuario.tipo === "vendedor" || usuario.tipo === "administrador") &&
-            temOpcaoDeCriarNovoProduto &&
-            cadastrarProduto
-          )}
-          <div className="mx-auto flex flex-wrap gap-20 justify-center items-center ">
-            {produtosFiltrados.length === 0 && (
-              <p className="text-2xl font-bold">{naoEncontrado}</p>
-            )}
-            {produtosFiltrados.map((produto) => {
-              return (
-                <CardProduto
-                  key={produto.id}
-                  produto={produto}
-                  editavel={produto.usuarios?.id === usuario.id}
-                />
-              );
-            })}
+                <option value="">Todas as categorias</option>
+                {categorias.map((categoria) => (
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.tipo}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {usuario.tipo === "vendedor" &&
+              temOpcaoDeCriarNovoProduto &&
+              cadastrarProduto}
           </div>
-        </div>
+        ) : (
+          usuario.tipo === "vendedor" &&
+          temOpcaoDeCriarNovoProduto &&
+          cadastrarProduto
+        )}
       </div>
-    </>
+      <div className="container mx-auto flex flex-wrap gap-20 justify-center items-center">
+        {produtosFiltrados.length === 0 && (
+          <p className="text-2xl font-bold">{naoEncontrado}</p>
+        )}
+        {produtosFiltrados.map((produto) => {
+          return (
+            <CardProduto
+              key={produto.id}
+              produto={produto}
+              editavel={produto.usuarios?.id === usuario.id}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 /* TODO: Quando cadastra um usuario invalido dá error mas não retorna */
@@ -13,7 +13,6 @@ export const cadastrarUsuario = async (
   try {
     const resposta = await api.post(url, dados);
 
-    console.log(resposta);
     if (resposta.status !== 201) throw new Error(JSON.stringify(resposta));
     setDados(resposta.data);
   } catch (e) {
@@ -42,7 +41,6 @@ export const listar = async (
 ) => {
   try {
     const resposta = await api.get(url, header);
-    console.log(resposta.data);
     setDados(resposta.data);
   } catch (e) {
     console.log(e);
@@ -75,6 +73,7 @@ export const atualizar = async (
 ) => {
   try {
     const resposta = await api.put(url, dados, header);
+    console.log(resposta);
     if (resposta.status !== 200) throw new Error(JSON.stringify(resposta));
     setDados(resposta.data);
   } catch (e) {
