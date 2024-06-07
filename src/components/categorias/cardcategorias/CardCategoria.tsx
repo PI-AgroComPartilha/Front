@@ -26,14 +26,17 @@ function CardCategoria({ categoria, research }: CardCategoriasProps) {
         headers: { Authorization: token },
       });
       ToastAlerta("Postagem apagada com sucesso", "sucesso");
-      //research();
+      research();
     } catch (error: any) {
       if (error.toString().includes("401")) {
         ToastAlerta("O token expirou!", "info");
       } else {
         ToastAlerta("Erro ao deletar a postagem.", "erro");
       }
+      research();
     }
+
+    setDeleteModal(false);
     setLoadingDeleteRequest(false);
   }
 
