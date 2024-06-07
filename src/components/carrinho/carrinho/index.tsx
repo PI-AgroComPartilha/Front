@@ -23,7 +23,7 @@ function Carrinho() {
 
         {items.length === 0 ? (
           <h2 className="text-3xl text-center font-bold  mb-8 ">
-            Você não tem items no carinho 😿
+            Você não tem itens no carrinho 😿
           </h2>
         ) : (
           <div className="mt-12 bg-[#E8E8E8] p-6 rounded-lg">
