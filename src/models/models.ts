@@ -8,6 +8,16 @@ export interface Usuario {
   produtos?: Produto[];
 }
 
+export interface CriarUsuario {
+  nome: string;
+  usuario: string;
+  senha: string;
+  confirmarSenha?: string;
+  tipo: string;
+  foto: string;
+  produtos?: Produto[];
+}
+
 export interface UsuarioLogin {
   id: number;
   nome: string;
