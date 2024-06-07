@@ -1,8 +1,9 @@
 import { Envelope, GithubLogo, LinkedinLogo } from "@phosphor-icons/react";
 import { FC } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
-interface ContatoProps {}
+interface ContatoProps { }
 
 type pessoa = {
   foto: string;
@@ -73,17 +74,22 @@ const pessoas: pessoa[] = [
 
 const Contato: FC<ContatoProps> = () => {
   return (
-    <section className="w-full flex flex-col gap-10 min-h-[85vh] my-7 ">
-      <h1 className="flex text-center justify-center  text-5xl font-medium">
-        Conheça o time de desenvolvedores:
-      </h1>
+    <>
+    <Helmet>
+      <title>Agrocompartilha | Contato</title>
+    </Helmet>
+      <section className="w-full flex flex-col gap-10 min-h-[85vh] my-7 ">
+        <h1 className="flex text-center justify-center  text-5xl font-medium">
+          Conheça o time de desenvolvedores:
+        </h1>
 
-      <div className="flex w-full justify-center flex-wrap  mx-auto gap-6  ">
-        {pessoas.map((pessoa, id) => (
-          <CardPessoa key={id} {...pessoa} />
-        ))}
-      </div>
-    </section>
+        <div className="flex w-full justify-center flex-wrap  mx-auto gap-6  ">
+          {pessoas.map((pessoa, id) => (
+            <CardPessoa key={id} {...pessoa} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 
