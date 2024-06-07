@@ -13,9 +13,7 @@ import Header from "./components/header";
 import Home from "./paginas/home";
 import Footer from "./components/footer";
 import { AuthProvider } from "./contexts/AuthContext";
-import Sobre from "./paginas/sobre";
 import { ToastContainer } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 import Perfil from "./paginas/perfil/Perfil";
 import { CartProvider } from "./contexts/CardContext";
@@ -68,7 +66,6 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/sobre" element={<Sobre />} />
               <Route path="/contato" element={<Contato />} />
               <Route path="/produtos" element={<Produtos />} />
               <Route path="/cadastrarproduto" element={<FormularioProduto />} />

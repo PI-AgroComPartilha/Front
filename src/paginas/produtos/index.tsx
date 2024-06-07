@@ -4,6 +4,7 @@ import { Produto } from "../../models/models";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 import { listar } from "../../services/services";
 import ListarProdutos from "../../components/produtos/listarProdutos/listarProdutos";
+import { Helmet } from "react-helmet";
 
 function ProdutosPage() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
@@ -34,11 +35,16 @@ function ProdutosPage() {
   }, [token]);
 
   return (
+    <>
+    <Helmet>
+      <title>Agrocompartilha | Produtos</title>
+    </Helmet>
     <ListarProdutos
       produtos={produtos}
       titulo="Nossos Produtos 🛒"
       isLoading={isLoading}
-    />
+      />
+      </>
   );
 }
 

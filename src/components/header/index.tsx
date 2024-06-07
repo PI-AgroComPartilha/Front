@@ -25,16 +25,11 @@ const secoes: SecoesType[] = [
   },
   {
     id: 2,
-    nome: "Sobre",
-    path: "/sobre",
-  },
-  {
-    id: 3,
     nome: "Contato",
     path: "/contato",
   },
   {
-    id: 4,
+    id: 3,
     nome: "Produtos",
     path: "/Produtos",
   },

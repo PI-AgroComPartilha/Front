@@ -5,6 +5,7 @@ import { Produto } from "../../models/models";
 import { ToastAlerta } from "../../utils/ToastAlerta";
 import { listar } from "../../services/services";
 import ListarProdutos from "../../components/produtos/listarProdutos/listarProdutos";
+import { Helmet } from "react-helmet";
 
 function MinhaLojaPage() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
@@ -48,12 +49,17 @@ function MinhaLojaPage() {
     (prod) => prod.usuarios?.id === usuario.id
   );
   return (
+    <>
+    <Helmet>
+      <title>Agrocompartilha | Loja</title>
+    </Helmet>
     <ListarProdutos
       produtos={(userProduto as any) || []}
       titulo="Meu Produtos"
       temOpcaoDeCriarNovoProduto={true}
       isLoading={isLoading}
-    />
+      />
+      </>
   );
 }
 

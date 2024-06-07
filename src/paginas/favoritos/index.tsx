@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFavorite } from "../../contexts/FavoritosContext";
 import ListarProdutos from "../../components/produtos/listarProdutos/listarProdutos";
+import { Helmet } from "react-helmet";
 
 function FavoritosPage() {
   const { favorites, removeFavorite } = useFavorite();
@@ -11,12 +12,17 @@ function FavoritosPage() {
   }, []);
 
   return (
+    <>
+    <Helmet>
+      <title>Agrocompartilha | Favoritos</title>
+    </Helmet>
     <ListarProdutos
       produtos={favorites}
       titulo="Favoritos 💖💖"
-      naoEncontrado="Você não gosta de nada ?? vai lá favorita algo e ajudar o pessoal (Você nem vai pagar)"
+      naoEncontrado="Você não tem produtos salvo nos favoritos "
       isLoading={isLoading}
-    />
+      />
+      </>
   );
 }
 
