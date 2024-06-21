@@ -55,8 +55,7 @@ export const cadastrar = async (
 ) => {
   try {
     const resposta = await api.post(url, dados, header);
-    console.log(resposta);
-    if (resposta.status !== 20) throw new Error(JSON.stringify(resposta));
+    if (resposta.status !== 201) throw new Error(JSON.stringify(resposta));
 
     setDados(resposta.data);
   } catch (e) {
@@ -73,7 +72,6 @@ export const atualizar = async (
 ) => {
   try {
     const resposta = await api.put(url, dados, header);
-    console.log(resposta);
     if (resposta.status !== 200) throw new Error(JSON.stringify(resposta));
     setDados(resposta.data);
   } catch (e) {

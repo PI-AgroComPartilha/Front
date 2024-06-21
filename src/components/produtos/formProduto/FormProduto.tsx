@@ -68,8 +68,7 @@ export default function FormProduto() {
 
     if (e.target.name === "preco") {
       value = parseFloat(Number(e.target.value).toFixed(2));
-      console.log(value);
-      console.log(typeof value);
+
       e.target.value = value;
 
       setProduto({
@@ -102,7 +101,6 @@ export default function FormProduto() {
 
     setIsLoading(true);
 
-    console.log(produto);
     if (id) {
       try {
         await atualizar(`/produtos/${id}`, produto, setProduto, {
