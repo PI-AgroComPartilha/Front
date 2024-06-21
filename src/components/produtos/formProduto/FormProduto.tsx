@@ -23,11 +23,6 @@ export default function FormProduto() {
   const token = usuario.token;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [categoria, setCategoria] = useState<Categoria>({
-    id: 0,
-    nome: "",
-  });
-
   async function buscarProdutoPorId(id: string) {
     await listar(`/produtos/${id}`, setProduto, {
       headers: {
@@ -42,14 +37,6 @@ export default function FormProduto() {
 
       /* Update the price to be a number so when the user enters  */
       return { ...p, preco: Number(p.preco) };
-    });
-  }
-
-  async function buscarCategoriaPorId(id: string) {
-    await listar(`/categorias/${id}`, setCategoria, {
-      headers: {
-        Authorization: token,
-      },
     });
   }
 
@@ -74,9 +61,7 @@ export default function FormProduto() {
       setProduto({
         ...produto,
         preco: value,
-        categoria: {
-          id: categoria.id,
-        },
+
         usuario: {
           id: usuario.id,
         },
@@ -87,9 +72,7 @@ export default function FormProduto() {
     setProduto({
       ...produto,
       [e.target.name]: e.target.value,
-      categoria: {
-        id: categoria.id,
-      },
+
       usuario: {
         id: usuario.id,
       },
@@ -116,7 +99,6 @@ export default function FormProduto() {
         await cadastrar(`/produtos`, produto, setProduto, {
           headers: { Authorization: token },
         });
-
         ToastAlerta("Produto cadastrado com sucesso", "sucesso");
       } catch (error: any) {
         ToastAlerta("Erro ao cadastrar o produto!", "sucesso");
@@ -143,15 +125,6 @@ export default function FormProduto() {
     }
     buscarCategorias();
   }, [id]);
-
-  useEffect(() => {
-    setProduto({
-      ...produto,
-      categoria: {
-        id: categoria.id,
-      },
-    });
-  }, [categoria]);
 
   //TODO: Criar card de preview que atualiza os componentes conforme edição do usuário
   return (
@@ -204,8 +177,15 @@ export default function FormProduto() {
             required
             name="categoria"
             className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#587d33]  duration-1000 "
-            value={produto.categoria.id ? produto.categoria.id : ""}
-            onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
+            value={produto.categoria.id}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+              setProduto({
+                ...produto,
+                categoria: {
+                  id: Number(e.target.value),
+                },
+              });
+            }}
           >
             <option value="" selected disabled>
               Selecione a categoria

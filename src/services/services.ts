@@ -53,8 +53,10 @@ export const cadastrar = async (
   setDados: Function,
   header: Object
 ) => {
+  console.log("Cadastrando...");
   try {
     const resposta = await api.post(url, dados, header);
+
     if (resposta.status !== 201) throw new Error(JSON.stringify(resposta));
 
     setDados(resposta.data);
