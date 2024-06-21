@@ -177,7 +177,7 @@ export default function FormProduto() {
             required
             name="categoria"
             className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#587d33]  duration-1000 "
-            value={produto.categoria.id}
+            value={produto.categoria.id || ""}
             onChange={(e: ChangeEvent<HTMLSelectElement>) => {
               setProduto({
                 ...produto,
