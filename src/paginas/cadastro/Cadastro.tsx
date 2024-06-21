@@ -14,7 +14,7 @@ function Cadastro() {
 
   const [usuario, setUsuario] = useState<CriarUsuario>({
     nome: "",
-    usuario: "",
+    email: "",
     senha: "",
     confirmarSenha: "",
     tipo: "",
@@ -24,7 +24,7 @@ function Cadastro() {
   const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
     id: 0,
     nome: "",
-    usuario: "",
+    email: "",
     senha: "",
     tipo: "",
     foto: "",
@@ -47,22 +47,30 @@ function Cadastro() {
     });
   }
 
-  const cadastroFormSchema = z.object({
-    nome: z.string().min(3).regex(/[A-Za-z]/gi, "Apenas letras são permitidas"),
-    usuario: z.string().email("Escreva um email valido"),
-    senha: z.string().min(8, "Sua senha deve ter no minimo 8 caracteres"),
-    confirmarSenha: z.string().min(8, "blablabla"),
-    foto: z.string().url("Deve ser uma url valida para uma foto"),
-    tipo: z.string(),
-  }).superRefine(({ confirmarSenha, senha }, ctx) => {
-    if (confirmarSenha !== senha) {
-      ctx.addIssue({
-        code: "custom",
-        message: "As senhas não correspondem",
-        path: ['confirmaSenha']
-      })
-    }
-  })
+  const cadastroFormSchema = z
+    .object({
+      nome: z
+        .string()
+        .min(3)
+        .regex(/[A-Za-z]/gi, "Apenas letras são permitidas"),
+      email: z.string().email("Escreva um email valido"),
+      senha: z.string().min(8, "Sua senha deve ter no minimo 8 caracteres"),
+      confirmarSenha: z.string().min(8, "blablabla"),
+      foto: z
+        .string()
+        .optional()
+        .or(z.string().url("Deve ser uma url valida para uma foto")),
+      tipo: z.string().min(1, "Selecione um tipo de conta"),
+    })
+    .superRefine(({ confirmarSenha, senha }, ctx) => {
+      if (confirmarSenha !== senha) {
+        ctx.addIssue({
+          code: "custom",
+          message: "As senhas não correspondem",
+          path: ["confirmaSenha"],
+        });
+      }
+    });
 
   async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -70,13 +78,13 @@ function Cadastro() {
     const result = cadastroFormSchema.safeParse(usuario);
     const usuarioData = {
       nome: usuario.nome,
-      usuario: usuario.usuario,
+      email: usuario.email,
       senha: usuario.senha,
       tipo: usuario.tipo,
       foto: usuario.foto,
-      prudutos: usuario.produtos
-    }
+    };
 
+    if (!usuario.foto) delete usuarioData.foto;
     if (result.success) {
       try {
         await cadastrarUsuario(
@@ -90,23 +98,20 @@ function Cadastro() {
       }
     } else {
       result.error.issues.map((error) => {
-        ToastAlerta(`${error.path}: ${error.message}`, "error")
-      })
-
+        ToastAlerta(`${error.path}: ${error.message}`, "error");
+      });
     }
     setIsLoading(false);
   }
 
   return (
     <>
-    <Helmet>
-      <title>Agrocompartilha | Cadastre-se</title>
-    </Helmet>
+      <Helmet>
+        <title>Agrocompartilha | Cadastre-se</title>
+      </Helmet>
       <div className=" bg-[url('https://img.freepik.com/fotos-premium/mao-segurando-soja-com-platation-e-o-ceu-no-horizonte-e-detalhes-em-macro_44762-1027.jpg?w=740')] bg-cover bg-no-repeat h-screen ">
         <div className="container mx-auto flex items-center flex-col min-h-[80svh]">
-          <div
-            className="text-gray-800/80 bg-white/15 backdrop-blur-md my-[10vh] w-2/3 max-w-[500px] rounded-xl p-5"
-          >
+          <div className="text-gray-800/80 bg-white/15 backdrop-blur-md my-[10vh] w-2/3 max-w-[500px] rounded-xl p-5">
             <form
               className="flex justify-center items-center flex-col p-5"
               onSubmit={cadastrarNovoUsuario}
@@ -128,7 +133,10 @@ function Cadastro() {
                   }
                   placeholder=" "
                 />
-                <label htmlFor="nome" className="pl-2 drop-shadow  font-medium peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
+                <label
+                  htmlFor="nome"
+                  className="pl-2 drop-shadow  font-medium peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+                >
                   Nome
                 </label>
               </div>
@@ -136,20 +144,24 @@ function Cadastro() {
                 <input
                   required
                   type="email"
-                  id="usuario"
-                  name="usuario"
+                  id="email"
+                  name="email"
                   className="block py-2.5 pl-2 px-0 w-full text-gray-900 bg-white rounded-xl border-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-400 peer"
-                  value={usuario.usuario}
+                  value={usuario.email}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     atualizarEstado(e)
                   }
                   placeholder=" "
                 />
-                <label htmlFor="usuario" className="pl-2 drop-shadow  font-medium  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">E-mail</label>
+                <label
+                  htmlFor="email"
+                  className="pl-2 drop-shadow  font-medium  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+                >
+                  E-mail
+                </label>
               </div>
               <div className="relative z-0 w-full my-3  group">
                 <input
-                  required
                   type="text"
                   id="foto"
                   name="foto"
@@ -160,10 +172,16 @@ function Cadastro() {
                   }
                   placeholder=" "
                 />
-                <label htmlFor="foto" className="pl-2 drop-shadow  font-medium  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">Foto</label>
+                <label
+                  htmlFor="foto"
+                  className="pl-2 drop-shadow  font-medium  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+                >
+                  Foto
+                </label>
               </div>
               <div className="relative z-0 w-full my-3  group">
                 <select
+                  required
                   className="block py-2.5 px-1 w-full text-gray-700 font-medium drop-shadow bg-white rounded-xl border-2 border-gray-200  focus:outline-none focus:ring-0 focus:border-gray-400 peer"
                   onChange={(e) => {
                     setUsuario({
@@ -171,14 +189,12 @@ function Cadastro() {
                       tipo: e.target.value,
                     });
                   }}
-                  required
-                  aria-required
                 >
                   <option selected disabled>
                     Tipo
                   </option>
-                  <option value="cliente" >Consumidor</option>
-                  <option value="vendedor">Produtor</option>
+                  <option value="consumidor">Consumidor</option>
+                  <option value="produtor">Produtor</option>
                 </select>
               </div>
               <div className="relative z-0 w-full my-3  group">
@@ -194,7 +210,12 @@ function Cadastro() {
                   }
                   placeholder=" "
                 />
-                <label htmlFor="senha" className="pl-2 txt-shadow text-sm font-bold  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">Senha</label>
+                <label
+                  htmlFor="senha"
+                  className="pl-2 txt-shadow text-sm font-bold  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+                >
+                  Senha
+                </label>
               </div>
               <div className="relative z-0 w-full my-3  group">
                 <input
@@ -209,7 +230,12 @@ function Cadastro() {
                   }
                   placeholder=" "
                 />
-                <label htmlFor="senha" className="pl-2 txt-shadow text-sm font-bold  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">Confirmar senha</label>
+                <label
+                  htmlFor="senha"
+                  className="pl-2 txt-shadow text-sm font-bold  peer-focus:font-medium absolute  text-gray-700  duration-300 transform -translate-y-6 scale-75 top-2.5  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+                >
+                  Confirmar senha
+                </label>
               </div>
               <button
                 type="submit"

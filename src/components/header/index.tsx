@@ -49,7 +49,7 @@ export default function Header() {
     handleLogout();
     ToastAlerta("O usuário foi desconectado com sucesso!", "info");
     navigate("/login");
-    setUserMenu(false)
+    setUserMenu(false);
   }
 
   function toggleMenu() {
@@ -84,7 +84,9 @@ export default function Header() {
                 key={secao.id}
                 className="hover:underline hover:underline-offset-4"
               >
-                <Link to={secao.path} onClick={()=> setUserMenu(false)}>{secao.nome}</Link>
+                <Link to={secao.path} onClick={() => setUserMenu(false)}>
+                  {secao.nome}
+                </Link>
               </li>
             ))}
           </ul>
@@ -119,7 +121,7 @@ export default function Header() {
                         <Link
                           to="/perfil"
                           className="group block px-4 py-2 text-sm "
-                          onClick={() =>setUserMenu(false)}
+                          onClick={() => setUserMenu(false)}
                         >
                           <div className="flex items-center gap-2">
                             <User
@@ -132,7 +134,7 @@ export default function Header() {
                         <Link
                           to="/favoritos"
                           className="group block px-4 py-2 text-sm"
-                          onClick={() =>setUserMenu(false)}
+                          onClick={() => setUserMenu(false)}
                         >
                           <div className="flex items-center gap-2">
                             <Heart
@@ -142,11 +144,11 @@ export default function Header() {
                             <p className=" text-lg text-gray-800">Favoritos</p>
                           </div>
                         </Link>
-                        {usuario?.tipo === "vendedor" && (
+                        {usuario?.tipo === "produtor" && (
                           <Link
                             to="/minhaLoja"
                             className="group block px-4 py-2 text-sm"
-                            onClick={() =>setUserMenu(false)}
+                            onClick={() => setUserMenu(false)}
                           >
                             <div className="flex items-center gap-2">
                               <Carrot
@@ -159,12 +161,11 @@ export default function Header() {
                             </div>
                           </Link>
                         )}
-                        {/* Troca isso aqui depois para admin */}
                         {usuario?.tipo === "admin" && (
                           <Link
                             to="/categorias"
                             className="group block px-4 py-2 text-sm"
-                            onClick={() =>setUserMenu(false)}
+                            onClick={() => setUserMenu(false)}
                           >
                             <div className="flex items-center gap-2">
                               <Plant

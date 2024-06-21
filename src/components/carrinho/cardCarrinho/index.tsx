@@ -29,7 +29,7 @@ function CardCarrinho({ item }: CardProdutosProps) {
             }).format(item.preco)}
           </h3>
           <p className="text-sm italic text-center">
-            Categoria: {item.categorias.tipo}
+            Categoria: {item.categoria.nome}
           </p>
         </div>
         <button

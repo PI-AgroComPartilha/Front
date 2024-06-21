@@ -7,7 +7,15 @@ import { ToastAlerta } from "../../../utils/ToastAlerta";
 import { RotatingLines } from "react-loader-spinner";
 
 export default function FormProduto() {
-  const [produto, setProduto] = useState<CriarProduto>({} as CriarProduto);
+  const [produto, setProduto] = useState<CriarProduto>({
+    id: 0,
+    nome: "",
+    foto: "",
+    preco: 0,
+    categoria: {
+      id: 0,
+    },
+  } as CriarProduto);
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -17,7 +25,7 @@ export default function FormProduto() {
 
   const [categoria, setCategoria] = useState<Categoria>({
     id: 0,
-    tipo: "",
+    nome: "",
   });
 
   async function buscarProdutoPorId(id: string) {
@@ -67,8 +75,12 @@ export default function FormProduto() {
       setProduto({
         ...produto,
         preco: value,
-        categorias: categoria.id,
-        usuarios: usuario.id,
+        categoria: {
+          id: categoria.id,
+        },
+        usuario: {
+          id: usuario.id,
+        },
       });
       return;
     }
@@ -76,8 +88,12 @@ export default function FormProduto() {
     setProduto({
       ...produto,
       [e.target.name]: e.target.value,
-      categorias: categoria.id,
-      usuarios: usuario.id,
+      categoria: {
+        id: categoria.id,
+      },
+      usuario: {
+        id: usuario.id,
+      },
     });
   }
 
@@ -86,9 +102,10 @@ export default function FormProduto() {
 
     setIsLoading(true);
 
+    console.log(produto);
     if (id) {
       try {
-        await atualizar(`/produtos`, produto, setProduto, {
+        await atualizar(`/produtos/${id}`, produto, setProduto, {
           headers: { Authorization: token },
         });
 
@@ -132,7 +149,9 @@ export default function FormProduto() {
   useEffect(() => {
     setProduto({
       ...produto,
-      categorias: categoria.id,
+      categoria: {
+        id: categoria.id,
+      },
     });
   }, [categoria]);
 
@@ -187,13 +206,15 @@ export default function FormProduto() {
             required
             name="categoria"
             className="w-full border-2 rounded-lg p-3 border-[#cfcccc] hover:border-[#587d33]  duration-1000 "
-            value={produto.categorias || ""}
+            value={produto.categoria.id ? produto.categoria.id : ""}
             onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
           >
-            <option value="">Selecione a categoria</option>
+            <option value="" selected disabled>
+              Selecione a categoria
+            </option>
             {categorias.map((categoria) => (
               <option key={categoria.id} value={categoria.id}>
-                {categoria.tipo}
+                {categoria.nome}
               </option>
             ))}
           </select>

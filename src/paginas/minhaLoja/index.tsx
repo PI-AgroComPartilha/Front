@@ -46,20 +46,20 @@ function MinhaLojaPage() {
 
   /* Isso aqui é uma gambiarra louca para arrumar o backend user produtc dont have */
   const userProduto = produtos.filter(
-    (prod) => prod.usuarios?.id === usuario.id
+    (prod) => prod.usuario?.id === usuario.id
   );
   return (
     <>
-    <Helmet>
-      <title>Agrocompartilha | Loja</title>
-    </Helmet>
-    <ListarProdutos
-      produtos={(userProduto as any) || []}
-      titulo="Meu Produtos"
-      temOpcaoDeCriarNovoProduto={true}
-      isLoading={isLoading}
+      <Helmet>
+        <title>Agrocompartilha | Loja</title>
+      </Helmet>
+      <ListarProdutos
+        produtos={(userProduto as any) || []}
+        titulo="Meu Produtos"
+        temOpcaoDeCriarNovoProduto={true}
+        isLoading={isLoading}
       />
-      </>
+    </>
   );
 }
 

@@ -20,7 +20,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [usuario, setUsuario] = useState<UsuarioLogin>({
     id: 0,
     nome: "",
-    usuario: "",
+    email: "",
     senha: "",
     foto: "",
     tipo: "",
@@ -35,10 +35,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       await login(`/usuarios/logar`, user, setUsuario);
       setisAuthenticated(true);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
+      throw new Error(error);
     }
-    setIsLoading(false);
   }
 
   function handleLogout() {
@@ -46,7 +48,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUsuario({
       id: 0,
       nome: "",
-      usuario: "",
+      email: "",
       senha: "",
       foto: "",
       tipo: "",

@@ -47,7 +47,7 @@ function ListarCategorias() {
   }, [categorias.length]);
 
   const categoriasFiltrada = categorias.filter((categoria) => {
-    return categoria.tipo.toLowerCase().includes(filtroCategoria.toLowerCase());
+    return categoria.nome.toLowerCase().includes(filtroCategoria.toLowerCase());
   });
 
   if (isLoading) return <Loading title="Carregando Produtos..." />;

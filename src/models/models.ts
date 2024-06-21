@@ -1,7 +1,7 @@
 export interface Usuario {
   id: number;
   nome: string;
-  usuario: string;
+  email: string;
   senha: string;
   tipo: string;
   foto: string;
@@ -10,7 +10,7 @@ export interface Usuario {
 
 export interface CriarUsuario {
   nome: string;
-  usuario: string;
+  email: string;
   senha: string;
   confirmarSenha?: string;
   tipo: string;
@@ -21,7 +21,7 @@ export interface CriarUsuario {
 export interface UsuarioLogin {
   id: number;
   nome: string;
-  usuario: string;
+  email: string;
   senha: string;
   tipo: string;
   foto: string;
@@ -30,7 +30,7 @@ export interface UsuarioLogin {
 
 export interface Categoria {
   id: number;
-  tipo: string;
+  nome: string;
 }
 
 export interface Produto {
@@ -38,8 +38,8 @@ export interface Produto {
   nome: string;
   foto: string;
   preco: number;
-  categorias?: Categoria;
-  usuarios: Usuario;
+  categoria?: Categoria;
+  usuario: Usuario;
 }
 
 export interface CriarProduto {
@@ -48,6 +48,10 @@ export interface CriarProduto {
   nome: string;
   foto: string;
   preco: number;
-  categorias: number;
-  usuarios: number;
+  categoria: {
+    id: number;
+  };
+  usuario: {
+    id: number;
+  };
 }

@@ -44,7 +44,7 @@ function CardCategoria({ categoria, research }: CardCategoriasProps) {
     <div className="border flex flex-col rounded-2xl overflow-hidden justify-between ">
       <header className="py-2 px-6  bg-[#587d33] text-white font-bold text-2xl text-center">
         <div className="flex gap-4 text-center mx-auto w-full justify-center items-center">
-          <h4>{categoria.tipo}</h4>
+          <h4>{categoria.nome}</h4>
           <Plant size={18} weight="duotone" />
         </div>
       </header>

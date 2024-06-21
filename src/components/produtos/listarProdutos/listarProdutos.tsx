@@ -1,12 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-import { Vortex } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { Categoria, Produto } from "../../../models/models";
 import { listar } from "../../../services/services";
 import { ToastAlerta } from "../../../utils/ToastAlerta";
 import CardProduto from "../cardprodutos/CardProdutos";
-import { Plant } from "@phosphor-icons/react";
 import Loading from "../../loading/loading";
 
 type ListarProdutosProps = {
@@ -62,7 +60,7 @@ function ListarProdutos({
     return (
       produto.nome.toLowerCase().includes(filtroProduto.toLowerCase()) &&
       (categoriaSelecionada === "" ||
-        produto.categorias?.id === parseInt(categoriaSelecionada))
+        produto.categoria?.id === parseInt(categoriaSelecionada))
     );
   });
 
@@ -109,17 +107,17 @@ function ListarProdutos({
                 <option value="">Todas as categorias</option>
                 {categorias.map((categoria) => (
                   <option key={categoria.id} value={categoria.id}>
-                    {categoria.tipo}
+                    {categoria.nome}
                   </option>
                 ))}
               </select>
             </div>
-            {usuario.tipo === "vendedor" &&
+            {usuario.tipo === "produtor" &&
               temOpcaoDeCriarNovoProduto &&
               cadastrarProduto}
           </div>
         ) : (
-          usuario.tipo === "vendedor" &&
+          usuario.tipo === "produtor" &&
           temOpcaoDeCriarNovoProduto &&
           cadastrarProduto
         )}
@@ -133,7 +131,7 @@ function ListarProdutos({
             <CardProduto
               key={produto.id}
               produto={produto}
-              editavel={produto.usuarios?.id === usuario.id}
+              editavel={produto.usuario?.id === usuario.id}
             />
           );
         })}
